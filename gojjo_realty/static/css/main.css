@@ -1760,7 +1760,6 @@
   }
   
   .pricing .pricing-header {
-    background: linear-gradient(rgba(var(--color-secondary-rgb), 0.9), rgba(var(--color-secondary-rgb), 0.9)), url("../img/pricing-bg.jpg") center center;
     background-size: cover;
     text-align: center;
     padding: 40px;
@@ -1847,9 +1846,6 @@
     border-color: var(--color-primary);
   }
   
-  .pricing .featured .pricing-header {
-    background: linear-gradient(rgba(var(--color-primary-rgb), 0.9), rgba(var(--color-primary-rgb), 0.9)), url("../img/pricing-bg.jpg") center center;
-  }
   
   .pricing .featured .buy-btn {
     background: var(--color-primary);
