@@ -1,3 +1,13 @@
 {% extends "base.html" %}
 
-
+{% block content %}
+    {% include 'pages/components/c_hero.html' %}
+    {% include 'pages/components/c_services.html' %}
+    {% include 'pages/components/c_about.html' %}
+    {% include 'pages/components/c_cta.html' %}
+    {% include 'pages/components/c_testimonials.html' %}
+    {% include 'pages/components/c_faq.html' %}
+    {% include 'pages/components/c_team.html' %}
+    {% include 'pages/components/c_blogs.html' %}
+    {% include 'pages/components/c_contact.html' %}
+{% endblock %}
