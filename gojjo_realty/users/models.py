@@ -1,5 +1,5 @@
 from django.contrib.auth.models import AbstractUser
-from django.db.models import CharField, EmailField
+from django.db.models import CharField, EmailField, BooleanField
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
@@ -14,11 +14,18 @@ class User(AbstractUser):
     """
 
     # First and last name do not cover name patterns around the globe
-    name = CharField(_("Name of User"), blank=True, max_length=255)
+    name = None  # type: ignore
     first_name = None  # type: ignore
     last_name = None  # type: ignore
     email = EmailField(_("email address"), unique=True)
     username = None  # type: ignore
+    is_agent = BooleanField(default=False)
+    is_teamlead = BooleanField(default=False)
+    is_broker = BooleanField(default=False)
+    is_lead = BooleanField(default=False)
+    is_client = BooleanField(default=False)
+    is_admin = BooleanField(default=False)
+    is_manager = BooleanField(default=False)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
@@ -33,3 +40,21 @@ class User(AbstractUser):
 
         """
         return reverse("users:detail", kwargs={"pk": self.id})
+    
+    def get_role(self):
+        if self.is_agent:
+            return 'Agent'
+        elif self.is_teamlead:
+            return 'Team Lead'
+        elif self.is_broker:
+            return 'Broker'
+        elif self.is_lead:
+            return 'Lead'
+        elif self.is_client:
+            return 'Client'
+        elif self.is_admin:
+            return 'Admin'
+        elif self.is_manager:
+            return 'Manager'
+        else:
+            return 'User'
