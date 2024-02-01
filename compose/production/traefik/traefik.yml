@@ -31,7 +31,7 @@ certificatesResolvers:
 http:
   routers:
     web-secure-router:
-      rule: 'Host(`gojjorealty.net`) || Host(`www.gojjorealty.net`)'
+      rule: 'Host(`teamgojjo.online`) || Host(`www.teamgojjo.online`)'
       entryPoints:
         - web-secure
       middlewares:
@@ -42,7 +42,7 @@ http:
         certResolver: letsencrypt
 
     flower-secure-router:
-      rule: 'Host(`gojjorealty.net`)'
+      rule: 'Host(`teamgojjo.online`)'
       entryPoints:
         - flower
       service: flower
