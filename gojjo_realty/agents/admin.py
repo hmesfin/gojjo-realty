@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from gojjo_realty.agents.models import Agent, License, SocialAccount
+from gojjo_realty.agents.models import Agent, License, SocialAccount, Address, AgentPage
 
 class SocialAccountInline(admin.TabularInline):
     model = SocialAccount
@@ -26,12 +26,24 @@ class LicenseInline(admin.TabularInline):
     fields = ('number', 'state', 'type', 'expiration_date', 'is_published')
     classes = ['collapse']
 
+class AddressInline(admin.TabularInline):
+    model = Address
+    extra = 1
+    min_num = 0
+    max_num = 3
+    verbose_name = 'Address'
+    verbose_name_plural = 'Addresses'
+    can_delete = True
+    show_change_link = True
+    fields = ('address_line_1', 'address_line_2', 'city', 'state', 'zip_code', 'address_type', 'is_published')
+    classes = ['collapse']
+
 @admin.register(Agent)
 class AgentAdmin(admin.ModelAdmin):
     list_display = ['user', 'slug', 'is_active', 'created_date', 'modified_date']
     list_filter = ['is_active', 'created_date', 'modified_date']
     search_fields = ['user__first_name', 'user__last_name', 'user__email']
-    inlines = [SocialAccountInline, LicenseInline]
+    inlines = [SocialAccountInline, LicenseInline, AddressInline]
     fieldsets = (
         (None, {
             'fields': ('user', 'is_active')
@@ -47,6 +59,22 @@ class AgentAdmin(admin.ModelAdmin):
         }),
     )
     readonly_fields = ['user', 'created_date', 'modified_date']
+    save_on_top = True
+    save_as = True
+    save_as_continue = True
+    save_on_bottom = True
+
+@admin.register(AgentPage)
+class AgentPageAdmin(admin.ModelAdmin):
+    list_display = ['title', 'slug', 'is_published', 'created_date', 'modified_date']
+    list_filter = ['is_published', 'created_date', 'modified_date']
+    search_fields = ['title', 'content']
+    fieldsets = (
+        ('Page Content', {
+            'fields': ('title', 'content', 'is_published')
+        }),
+    )
+    readonly_fields = ['created_date', 'modified_date']
     save_on_top = True
     save_as = True
     save_as_continue = True

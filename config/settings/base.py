@@ -80,11 +80,15 @@ THIRD_PARTY_APPS = [
     "rest_framework.authtoken",
     "corsheaders",
     "drf_spectacular",
+    "ckeditor",
+    "phonenumber_field",
+    "phonenumbers",
 ]
 
 LOCAL_APPS = [
     "gojjo_realty.users",
     "gojjo_realty.agents",
+    "gojjo_realty.pages",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -187,6 +191,10 @@ TEMPLATES = [
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
                 "gojjo_realty.users.context_processors.allauth_settings",
+                "gojjo_realty.utils.context_processors.site_info",
+                "gojjo_realty.utils.context_processors.site_links",
+                "gojjo_realty.utils.context_processors.site_socials",
+                "gojjo_realty.utils.context_processors.contact_info",
             ],
         },
     }
@@ -339,3 +347,7 @@ SPECTACULAR_SETTINGS = {
 }
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+# CKEditor
+CKEDITOR_UPLOAD_PATH = "ckuploads/"
+CKEDITOR_FILENAME_GENERATOR = 'gojjo_realty.blog.utils.get_filename'

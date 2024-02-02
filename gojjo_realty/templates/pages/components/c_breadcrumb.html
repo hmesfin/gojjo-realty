@@ -1,0 +1,14 @@
+{% load i18n %}
+
+<div class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-end align-items-center">
+        <ol>
+          <li><a href="{% url 'pages:home' %}">{% trans "Home"%}</a></li>
+          <li>{{ page_title }}</li>
+        </ol>
+      </div>
+
+    </div>
+  </div>

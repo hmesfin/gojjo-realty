@@ -3,9 +3,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 
-from gojjo_real_estate.agents.models import Agent, License, SocialAccount
+from gojjo_realty.agents.models import Agent, License, SocialAccount, Address, AgentPage
 
-from gojjo_real_estate.agents.forms import AgentForm
+from gojjo_realty.agents.forms import AgentForm
 
 class AgentListView(ListView):
     model = Agent
@@ -17,6 +17,7 @@ class AgentListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['agents'] = Agent.objects.filter(is_published=True)
+        context['agent_page'] = AgentPage.objects.filter(is_published=True).first()
         context['licenses'] = License.objects.all()
         context['social_accounts'] = SocialAccount.objects.all()
         context['page_title'] = 'Our Agents'
@@ -34,6 +35,7 @@ class AgentDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['licenses'] = License.objects.filter(licensee=self.object)
         context['social_accounts'] = SocialAccount.objects.filter(agent=self.object)
+        context['addresses'] = Address.objects.filter(agent=self.object)
         context['page_title'] = "Our Agents"
         context['page_subtitle'] = "Realtor Extraordinaire"
         context['detail_page_title'] = self.object.get_full_name()

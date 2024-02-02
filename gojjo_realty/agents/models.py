@@ -27,6 +27,30 @@ class BaseAgentModel(models.Model):
     class Meta:
         abstract = True
 
+class AgentPage(BaseAgentModel):
+    title = models.CharField(_("Title"), max_length=255, blank=True)
+    slug = models.SlugField(_("Slug"), max_length=255, blank=True)
+    content = RichTextField(_("Content"), blank=True)
+    is_published = models.BooleanField(_("Publish"), default=True)
+
+    class Meta:
+        verbose_name = _("agent page")
+        verbose_name_plural = _("agent pages")
+        ordering = ['title']
+    
+    def __str__(self):
+        return self.title
+    
+    def make_slug(self):
+        return slugify(self.title)
+    
+    def save(self, *args, **kwargs):
+        self.slug = self.make_slug()
+        super(AgentPage, self).save(*args, **kwargs)
+    
+    def get_absolute_url(self):
+        return reverse("agents:agent_page_detail", kwargs={"slug": self.slug})
+
 class Address(BaseAgentModel):
     agent = models.ForeignKey('Agent', on_delete=models.CASCADE, related_name='agent_address', verbose_name=_("Agent"))
     address_line_1 = models.CharField(_("Address Line 1"), max_length=255, blank=True)
@@ -98,7 +122,7 @@ class Agent(BaseAgentModel):
     addresses = models.ManyToManyField(Address, blank=True, related_name='agent_addresses', verbose_name=_("Addresses"))
     start_date = models.DateField(_("Start Date"), blank=True, null=True)
     termination_date = models.DateField(_("Termination Date"), blank=True, null=True)
-    is_published = models.BooleanField(_("Publish"), default=True)
+    is_published = models.BooleanField(_("Publish"), default=False)
 
 
     def __str__(self):
