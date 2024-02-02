@@ -69,7 +69,7 @@ celerybeat-schedule
 .venv
 venv/
 ENV/
-gc_credentials.json
+gc_credentials.*
 # Rope project settings
 .ropeproject
 
