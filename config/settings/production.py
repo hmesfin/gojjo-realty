@@ -56,17 +56,21 @@ SECURE_HSTS_PRELOAD = env.bool("DJANGO_SECURE_HSTS_PRELOAD", default=True)
 # https://docs.djangoproject.com/en/dev/ref/middleware/#x-content-type-options-nosniff
 SECURE_CONTENT_TYPE_NOSNIFF = env.bool("DJANGO_SECURE_CONTENT_TYPE_NOSNIFF", default=True)
 
+# STORAGES
+# ------------------------------------------------------------------------------
+# https://django-storages.readthedocs.io/en/latest/#installation
+INSTALLED_APPS += ["storages"]  # noqa: F405
+GS_BUCKET_NAME = env("DJANGO_GCP_STORAGE_BUCKET_NAME")
+GS_DEFAULT_ACL = "publicRead"
 
-# STATIC & MEDIA
+# STATIC
 # ------------------------
-STORAGES = {
-    "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
-    },
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# MEDIA
+# ------------------------------------------------------------------------------
+DEFAULT_FILE_STORAGE = "gojjo_realty.utils.storages.MediaGoogleCloudStorage"
+MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/media/"
+
 
 # EMAIL
 # ------------------------------------------------------------------------------
@@ -80,7 +84,7 @@ SERVER_EMAIL = env("DJANGO_SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
 EMAIL_SUBJECT_PREFIX = env(
     "DJANGO_EMAIL_SUBJECT_PREFIX",
-    default="[Gojjo Realty] ",
+    default="[Team Gojjo] ",
 )
 
 # ADMIN
