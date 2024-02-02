@@ -159,7 +159,7 @@ class CallToActionAdmin(admin.ModelAdmin):
     readonly_fields = ('created_date', 'modified_date')
     fieldsets = (
         (_('Call To Action'), {
-            'fields': ('name', 'type', 'title', 'subtitle', 'text', 'button_text', 'button_url', 'image', 'video', 'is_published',)
+            'fields': ('name', 'type', 'title', 'subtitle', 'text', 'button_text', 'image', 'video', 'is_published',)
         }),
         (_('Date Information'), {
             'classes': ('collapse',),
