@@ -3,7 +3,6 @@
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}">
   <head>
-    <script src="{% static 'js/color-modes.js' %}"></script>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>
@@ -72,7 +71,6 @@
 {% endblock javascript %}
 </head>
 <body>
-  {% include 'pages/components/c_dark_mode.html' %}
     {% include 'pages/layouts/header.html' %}
     {% if messages %}
       {% for message in messages %}
@@ -102,7 +100,6 @@
   <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
   <!-- Template Main JS File -->
   <script src="{% static 'js/main.js' %}"></script>
-  <script src="{% static 'js/color-modes.js' %}"></script>
   {% endblock inline_javascript %}
 </body>
 </html>

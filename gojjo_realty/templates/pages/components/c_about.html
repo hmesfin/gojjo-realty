@@ -4,7 +4,7 @@
     <div class="container" data-aos="fade-up">
 
       <div class="section-header">
-        <h2>{{ page_title }}</h2>
+        <h2>{% trans "About Us" %}</h2>
         <p>{{ about_page.subtitle|safe }}</p>
       </div>
 
@@ -12,7 +12,7 @@
 
         <div class="col-lg-5">
           <div class="about-img">
-            <img src="{% static 'images/pages/about/about.jpg' %}" class="img-fluid" alt="">
+            <img src="{% if about_page.about_header_image %}{{ about_page.about_header_image.url }}{% else %} {% static 'images/pages/about/about.jpg' %}{% endif %}" class="img-fluid" alt="">
           </div>
         </div>
 
