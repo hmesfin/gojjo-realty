@@ -1,0 +1,22 @@
+{% load static i18n %}
+
+<section class="inner-page">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-header">
+                {% if service %}
+                    <h2>{{ service.name }}</h2>
+                    <p>{{ service.subtitle }}</p>
+                {% else %}
+                <h2>Sorry, no details for this service!</h2>
+                {% endif %}
+            </div>
+
+            {% if service %}
+                <p>
+                    {{ service.description|safe }}
+                </p>
+            {% endif %}
+
+        </div>
+    </section>

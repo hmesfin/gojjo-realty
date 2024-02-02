@@ -15,6 +15,8 @@ from gojjo_realty.pages.models import (
     AboutPage,
     FAQ,
     FAQCategory,
+    ContactPage,
+    ServicesPage,
     )
 
 @admin.register(ContactMessage)
@@ -126,6 +128,28 @@ class HomePageAdmin(admin.ModelAdmin):
         verbose_name_plural = _('home pages')
         ordering = ['-created_date']
 
+@admin.register(ServicesPage)
+class ServicesPageAdmin(admin.ModelAdmin):
+    list_display = ('name', 'type', 'page_header', 'created_date')
+    search_fields = ('name', 'page_header', 'created_date')
+    list_filter = ('created_date',)
+    date_hierarchy = 'created_date'
+    ordering = ('-created_date',)
+    readonly_fields = ('created_date', 'modified_date')
+    fieldsets = (
+        (_('Services Page'), {
+            'fields': ('name', 'type', 'page_header', 'page_subheader')
+        }),
+        (_('Date Information'), {
+            'classes': ('collapse',),
+            'fields': ('created_date', 'modified_date')
+        })
+    )
+    class Meta:
+        verbose_name = _('services page')
+        verbose_name_plural = _('services pages')
+        ordering = ['-created_date']
+
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
     list_display = ('name', 'subtitle', 'created_date')
@@ -136,7 +160,7 @@ class ServiceAdmin(admin.ModelAdmin):
     readonly_fields = ('created_date', 'modified_date')
     fieldsets = (
         (_('Service'), {
-            'fields': ('name', 'subtitle', 'description', 'long_description', 'image', 'is_published')
+            'fields': ('name', 'subtitle', 'description', 'long_description', 'image', 'service_icon',  'is_published')
         }),
         (_('Date Information'), {
             'classes': ('collapse',),

@@ -10,8 +10,10 @@ from gojjo_realty.pages.models import (
     FAQ,
     FAQCategory,
     Legal,
+    ServicesPage
     )
 from gojjo_realty.agents.models import Agent, AgentPage
+from gojjo_realty.pages.models import Service, CallToAction, FAQ, FAQCategory, Legal
 # from gojjo_realty.blogs.models import Post, Category
 
 
@@ -70,7 +72,8 @@ class ServicesListPageView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ServicesListPageView, self).get_context_data(**kwargs)
-        context['services'] = Service.objects.filter(is_published=True).order_by('-created_date')
+        context['services'] = Service.objects.filter(is_published=True).order_by('created_date')
+        context['service_page'] = ServicesPage.objects.filter(type="primary").first()
         context['call_to_action'] = CallToAction.objects.filter(is_published=True).first()
         context['page_title'] = "Our Services"
         return context
@@ -82,6 +85,7 @@ class ServiesDetailPageView(DetailView):
     context_object_name = 'service'
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
+
 
     def get_context_data(self, **kwargs):
         context = super(ServiesDetailPageView, self).get_context_data(**kwargs)

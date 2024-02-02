@@ -150,6 +150,19 @@ class Testimonial(BasePagesModel):
         verbose_name = _('testimonial')
         verbose_name_plural = _('testimonials')
 
+class ServicesPage(BasePagesModel):
+    name = models.CharField(_('name'), max_length=255)
+    type = models.CharField(_('type'), max_length=255, choices=PAGE_TYPE_CHOICES)
+    page_header = models.CharField(_('page header'), max_length=255, blank=True, null=True)
+    page_subheader = models.TextField(_('page subheader'), max_length=500, blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = _('services page')
+        verbose_name_plural = _('services pages')
+        ordering = ['-created_date']
 
 class Service(BasePagesModel):
     name = models.CharField(_('name'), max_length=255)
@@ -157,6 +170,7 @@ class Service(BasePagesModel):
     slug = models.SlugField(_('slug'), max_length=255, unique=True)
     description = models.TextField(_('description'))
     image = models.ImageField(_('image'), upload_to='services/uploads/', blank=True, null=True)
+    service_icon = models.CharField(_('service icon'), max_length=255, blank=True, null=True)
     long_description = RichTextField(_('long description'), blank=True, null=True)
     is_published = models.BooleanField(_('is published'), default=True)
 
