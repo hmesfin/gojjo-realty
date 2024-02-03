@@ -65,6 +65,7 @@ class HomePage(BasePagesModel):
     hero_subtitle = models.CharField(_('hero subtitle'), max_length=255)
     hero_text = models.TextField(_('hero text'), blank=True, null=True)
     hero_image = models.ImageField(_('hero image'), upload_to='home/uploads/')
+    hero_video_url = models.URLField(_('hero video url'), blank=True, null=True)
 
     def __str__(self):
         return self.name

@@ -116,7 +116,7 @@ class HomePageAdmin(admin.ModelAdmin):
     readonly_fields = ('created_date', 'modified_date')
     fieldsets = (
         (_('Home Page'), {
-            'fields': ('type', 'name', 'hero_title', 'hero_subtitle', 'hero_text', 'hero_image')
+            'fields': ('type', 'name', 'hero_title', 'hero_subtitle', 'hero_text', 'hero_image', 'hero_video_url')
         }),
         (_('Date Information'), {
             'classes': ('collapse',),

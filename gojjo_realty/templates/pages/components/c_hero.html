@@ -6,7 +6,7 @@
       <p>{{ home_page.hero_text }}</p>
       <div class="d-flex">
         <a href="{% url 'pages:contact' %}" class="btn-get-started scrollto">{% trans "Get Started" %}</a>
-        <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>{% trans "Watch Video" %}</span></a>
+        <a href="{{home_page.hero_video_url}}" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>{% trans "Watch Video" %}</span></a>
       </div>
     </div>
   </section>
