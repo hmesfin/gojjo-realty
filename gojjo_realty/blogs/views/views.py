@@ -1,0 +1,58 @@
+from django.views.generic import ListView, DetailView
+from gojjo_realty.blogs.models import Post, Category, BlogMeta
+from django.shortcuts import get_object_or_404
+from django.db.models import Sum
+
+class PostListView(ListView):
+    model = Post
+    template_name = 'blogs/blog_list.html'
+    context_object_name = 'blogs'
+    paginate_by = 6
+    ordering = ['-created_date']
+
+    def get_context_data(self, **kwargs):
+        context = super(PostListView, self).get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        context['meta'] = BlogMeta.objects.all().first()
+        context['blog_title'] = 'Our Latest Blogs'
+        return context
+
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'blogs/blog_detail.html'
+    context_object_name = 'blog'
+    slug_field ='slug'
+    slug_url_kwarg ='slug'
+
+
+    def get_context_data(self, **kwargs):
+        context = super(PostDetailView, self).get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        context['meta'] = BlogMeta.objects.all().first()
+        context['blog_title'] = self.object.title
+        return context
+
+    def increment_view_count(self):
+        view_count = self.object.view_count
+        self.object.view_count = view_count + 1
+        self.object.save()
+        return self.object.view_count
+
+class CategoryListView(ListView):
+    model = Post
+    template_name = 'blogs/category_list.html'
+    context_object_name = 'posts'
+    paginate_by = 6
+    
+    def get_queryset(self):
+        self.category = get_object_or_404(Category, slug=self.kwargs['slug'])
+        return Post.objects.published().filter(category=self.category)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = self.category
+        context['meta'] = BlogMeta.objects.all().first()
+        context['blog_category'] = self.category.name
+        return context
+    
+    

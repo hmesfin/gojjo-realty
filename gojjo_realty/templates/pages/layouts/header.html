@@ -17,7 +17,7 @@
           <li><a class="nav-link scrollto" href="{% url 'pages:about' %}">{% trans "About" %}</a></li>
           <li><a class="nav-link scrollto" href="{% url 'pages:services' %}">{% trans "Services" %}</a></li>
           <li><a class="nav-link scrollto" href="{% url 'agents:agent_list' %}">{% trans "Agents" %}</a></li>
-          <li><a href="blog.html">{% trans "Blog" %}</a></li>
+          <li><a href="{% url 'blogs:blog_list' %}">{% trans "Blog" %}</a></li>
           <li><a class="nav-link scrollto" href="{% url 'pages:contact' %}">{% trans "Contact" %}</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle d-none"></i>

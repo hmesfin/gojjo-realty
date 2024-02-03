@@ -9,7 +9,7 @@ from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
     path("", include("gojjo_realty.pages.urls", namespace="pages")),
-    # path("blogs/", include("gojjo_realty.blogs.urls", namespace="blogs")),
+    path("blogs/", include("gojjo_realty.blogs.urls", namespace="blogs")),
     path("agents/", include("gojjo_realty.agents.urls", namespace="agents")),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),

@@ -14,7 +14,7 @@ from gojjo_realty.pages.models import (
     )
 from gojjo_realty.agents.models import Agent, AgentPage
 from gojjo_realty.pages.models import Service, CallToAction, FAQ, FAQCategory, Legal
-# from gojjo_realty.blogs.models import Post, Category
+from gojjo_realty.blogs.models import Post, Category
 
 
 class HomePageView(TemplateView):
@@ -28,10 +28,11 @@ class HomePageView(TemplateView):
         context['agent_page'] = AgentPage.objects.filter(is_published=True).first()
         context['services'] = Service.objects.filter(is_published=True).order_by('created_date')[:3]
         context['call_to_action'] = CallToAction.objects.filter(type="primary").first()
+        context['faqs'] = FAQ.objects.filter(is_published=True, category=1).order_by('created_date')[:5]
         context['agents'] = Agent.objects.filter(is_published=True).order_by('created_date')[:3]
-        # context['posts'] = Post.objects.filter(published=True).order_by('-created_date')[:3]
+        context['blogs'] = Post.objects.filter(published=True).order_by('-created_date')[:3]
         context['testimonials'] = Testimonial.objects.filter(is_published=True).order_by('-created_date')
-        # context['categories'] = Category.objects.all()
+        context['categories'] = Category.objects.all()
         context['page_title'] = "Home"
         return context
 

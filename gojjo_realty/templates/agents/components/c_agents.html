@@ -46,7 +46,7 @@
               <h4><strong>{{ agent.first_name }}</strong> {{ agent.last_name|upper}}</h4>
               <span><strong>{{ agent.get_role_display }}</strong></span><br>
               <span><i class="bi bi-telephone-fill"></i> {{ agent.phone|format_phone }}</span>
-              <span><i class="bi bi-envelope-fill"></i> {{ agent.get_email }}</span>
+              <span><i class="bi bi-envelope-fill"></i> {{ agent.get_email|urlize }}</span>
             </div>
           </div>
         </div><!-- End Team Member -->
