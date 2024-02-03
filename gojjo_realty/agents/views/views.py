@@ -19,7 +19,7 @@ class AgentListView(ListView):
         context['agents'] = Agent.objects.filter(is_published=True)
         context['agent_page'] = AgentPage.objects.filter(is_published=True).first()
         context['licenses'] = License.objects.all()
-        context['social_accounts'] = SocialAccount.objects.all()
+        # context['social_accounts'] = SocialAccount.objects.filter(is_published=True)
         context['page_title'] = 'Our Agents'
         context['page_subtitle'] = 'Find the best agent for you'
         return context

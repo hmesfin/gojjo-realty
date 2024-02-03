@@ -1,4 +1,5 @@
 {% load static i18n %}
+{% load format_phone_number %}
 
 <section id="team" class="team">
     <div class="container" data-aos="fade-up">
@@ -21,13 +22,31 @@
             </div>
             <div class="member-info">
               <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
+                {% for account in agent.agent_social_account.all %}
+                {% if account.name == "tiktok" %}
+                <a href="{{ account.url }}"><i class="bi bi-tiktok"></i></a>
+                {% endif %}
+                {% if account.name == "facebook" %}
+                <a href="{{ account.url }}"><i class="bi bi-facebook"></i></a>
+                {% endif %}
+                {% if account.name == "instagram" %}
+                <a href="{{ account.url }}"><i class="bi bi-instagram"></i></a>
+                {% endif %}
+                {% if account.name == "twitter" %}
+                <a href="{{ account.url }}"><i class="bi bi-twitter-x"></i></a>
+                {% endif %}
+                {% if account.name == "youtube" %}
+                <a href="{{ account.url }}"><i class="bi bi-youtube"></i></a>
+                {% endif %}
+                {% if account.name == "linkedin" %}
+                <a href="{{ account.url }}"><i class="bi bi-linkedin"></i></a>
+                {% endif %}
+                {% endfor %}
               </div>
-              <h4>{{ agent.get_full_name }}</h4>
-              <span>{{ agent.get_role_display }}</span>
+              <h4><strong>{{ agent.first_name }}</strong> {{ agent.last_name|upper}}</h4>
+              <span><strong>{{ agent.get_role_display }}</strong></span><br>
+              <span><i class="bi bi-telephone-fill"></i> {{ agent.phone|format_phone }}</span>
+              <span><i class="bi bi-envelope-fill"></i> {{ agent.get_email }}</span>
             </div>
           </div>
         </div><!-- End Team Member -->
