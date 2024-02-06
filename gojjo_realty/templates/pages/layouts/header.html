@@ -13,15 +13,41 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="{% url 'pages:home' %}" class="active">{% trans "Home" %}</a></li>
-          <li><a class="nav-link scrollto" href="{% url 'pages:about' %}">{% trans "About" %}</a></li>
-          <li><a class="nav-link scrollto" href="{% url 'pages:services' %}">{% trans "Services" %}</a></li>
-          <li><a class="nav-link scrollto" href="{% url 'agents:agent_list' %}">{% trans "Agents" %}</a></li>
-          <li><a href="{% url 'blogs:blog_list' %}">{% trans "Blog" %}</a></li>
-          <li><a class="nav-link scrollto" href="{% url 'pages:contact' %}">{% trans "Contact" %}</a></li>
+            <li>
+                <a href="{% url 'pages:home' %}" class="{% if request.path == '/' %}active{% endif %}">
+                    {% trans "Home" %}
+                </a>
+            </li>
+            <li>
+                <a class="nav-link scrollto {% if request.path == '/about/' %}active{% endif %}" href="{% url 'pages:about' %}">
+                    {% trans "About" %}
+                </a>
+            </li>
+            <li>
+              <a class="nav-link scrollto {% if request.path == '/services/' %}active{% endif %}" href="{% url 'pages:services' %}">
+                  {% trans "Services" %}
+              </a>
+          </li>
+          <li>
+            <a class="nav-link scrollto {% if request.path == '/agents/' %}active{% endif %}" href="{% url 'agents:agent_list' %}">
+                {% trans "Agents" %}
+            </a>
+          </li>
+          <li>
+            <a class="nav-link scrollto {% if request.path == '/blogs/' %}active{% endif %}" href="{% url 'blogs:blog_list' %}">
+              {% trans "Blog" %}
+            </a>
+          </li>
+          <li>
+            <a class="nav-link scrollto {% if request.path == '/contact/' %}active{% endif %}" href="{% url 'pages:contact' %}">
+                {% trans "Contact" %}
+            </a>
+        </li>
+            <!-- Repeat for other navbar items -->
         </ul>
         <i class="bi bi-list mobile-nav-toggle d-none"></i>
-      </nav><!-- .navbar -->
+    </nav>
+    <!-- .navbar -->
       <a class="btn-getstarted scrollto" href="https://listings.gojjorealty.com">{% trans "Listings" %}</a>
 
     </div>

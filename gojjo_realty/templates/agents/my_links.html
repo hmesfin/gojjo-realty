@@ -1,0 +1,33 @@
+{% load static i18n %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>My Links</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <header>
+            <div class="share-button">
+            </div>
+        </header>
+        <div class="container">
+            <div class="image-container">
+                <img src="{% if agent.image %}{{ agent.image.url }}{% else %}{% static 'images/defaults/default_person.png' %} {% endif %}" alt="{{ agent.get_full_name }} Avatar">
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>My Links</h1>
+                    <ul>
+                        <li><a href="https://www.google.com">Google</a></li>
+                        <li><a href="https://www.facebook.com">Facebook</a></li>
+                        <li><a href="https://www.twitter.com">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+    </body>
+</html>

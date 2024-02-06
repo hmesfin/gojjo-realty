@@ -1,6 +1,7 @@
-from django.views.generic import ListView, DetailView, UpdateView
+from django.views.generic import ListView, DetailView, UpdateView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 
 from gojjo_realty.agents.models import Agent, License, SocialAccount, Address, AgentPage
@@ -18,8 +19,6 @@ class AgentListView(ListView):
         context = super().get_context_data(**kwargs)
         context['agents'] = Agent.objects.filter(is_published=True)
         context['agent_page'] = AgentPage.objects.filter(is_published=True).first()
-        context['licenses'] = License.objects.all()
-        # context['social_accounts'] = SocialAccount.objects.filter(is_published=True)
         context['page_title'] = 'Our Agents'
         context['page_subtitle'] = 'Find the best agent for you'
         return context
@@ -30,6 +29,27 @@ class AgentDetailView(DetailView):
     template_name = 'agents/agent_detail.html'
     slug_field ='slug'
     slug_url_kwarg = 'slug'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['licenses'] = License.objects.filter(licensee=self.object)
+        context['social_accounts'] = SocialAccount.objects.filter(agent=self.object)
+        context['addresses'] = Address.objects.filter(agent=self.object)
+        context['page_title'] = "Our Agents"
+        context['page_subtitle'] = "Realtor Extraordinaire"
+        context['detail_page_title'] = self.object.get_full_name()
+        return context
+
+class MyLinksView(TemplateView):
+    model = Agent
+    template_name = 'agents/my_links.html'
+
+    def get(self, request, *args, **kwargs):
+        agent = get_object_or_404(Agent, slug=kwargs['slug'])
+        if agent.user == self.request.user:
+            return super().get(request, *args, **kwargs)
+        else:
+            return redirect('agents:agent_list')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

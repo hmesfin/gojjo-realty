@@ -13,12 +13,13 @@
         <div class="col-xl-4 col-md-6 d-flex" data-aos="zoom-in" data-aos-delay="200">
           <div class="team-member">
             <div class="member-img">
+              <a href="{% url 'agents:agent_detail' agent.slug %}">
               <img src="{% if agent.agent_photo %}
               {{ agent.agent_photo.url }}
               {% else %}
               {% static 'images/defaults/default_person.png' %} 
               {% endif %}"
-              class="img-fluid" alt="">
+              class="img-fluid" alt=""></a>
             </div>
             <div class="member-info">
               <div class="social">
