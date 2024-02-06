@@ -13,7 +13,3 @@ REDIS_URL=redis://redis:6379/0
 CELERY_FLOWER_USER=tgMIuTzbLcdSYRbgOwoXErodTQyZvERH
 CELERY_FLOWER_PASSWORD=o6hrwpRYjqn4SYZsxDmtjPcT0Eg59kbVsxCJfgX8pR2e47LwOhwOjUK7bxmyU3tD
 
-# reCAPTCHA
-# ------------------------------------------------------------------------------
-RECAPTCHA_PUBLIC_KEY=6LdKGrEjAAAAAAbAKDMLRo4XOwl8XO3Zk_QskYzO
-RECAPTCHA_PRIVATE_KEY=6LdKGrEjAAAAAFox0Icv9rPDr5CrcqgckJFx-7zo
