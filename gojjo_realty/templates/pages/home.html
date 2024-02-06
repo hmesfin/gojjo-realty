@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %} {{ page_title }} {% endblock title %}
 
@@ -11,5 +12,5 @@
     {% include 'pages/components/c_faq.html' %}
     {% include 'pages/components/c_team.html' %}
     {% include 'pages/components/c_blogs.html' %}
-    {% include 'pages/components/c_contact.html' %}
+    {% include 'pages/modals/forms/contact_form.html' %}
 {% endblock %}

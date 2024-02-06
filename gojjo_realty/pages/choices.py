@@ -12,7 +12,7 @@ SUBJECT_CHOICES = (
     ('selling', _('Selling')),
     ('investing', _('Investing')),
     ('general_question', _('General Question')),
-    ('partnership', _('partnership')),
+    ('partnership', _('Partnership')),
     ('other', _('Other')),
 )
 

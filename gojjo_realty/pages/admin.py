@@ -72,7 +72,7 @@ class LinksAdmin(admin.ModelAdmin):
     readonly_fields = ('created_date', 'modified_date')
     fieldsets = (
         (_('Links'), {
-            'fields': ('name', 'link_type', 'url')
+            'fields': ('name', 'link_type', 'url', 'is_published')
         }),
         (_('Date Information'), {
             'classes': ('collapse',),

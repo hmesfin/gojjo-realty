@@ -83,6 +83,7 @@ THIRD_PARTY_APPS = [
     "ckeditor",
     "phonenumber_field",
     "phonenumbers",
+    "django_recaptcha",
 ]
 
 LOCAL_APPS = [
@@ -90,6 +91,7 @@ LOCAL_APPS = [
     "gojjo_realty.agents",
     "gojjo_realty.pages",
     "gojjo_realty.blogs",
+    "gojjo_realty.contacts",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -352,3 +354,8 @@ SPECTACULAR_SETTINGS = {
 # CKEditor
 CKEDITOR_UPLOAD_PATH = "ckuploads/"
 CKEDITOR_FILENAME_GENERATOR = 'gojjo_realty.blog.utils.get_filename'
+
+# Recaptcha
+RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
+RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
+RECAPTCHA_REQUIRED_SCORE = 0.85
