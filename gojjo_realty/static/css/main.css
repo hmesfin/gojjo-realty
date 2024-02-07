@@ -2540,6 +2540,7 @@
 
   [data-bs-theme='dark'] .faq .accordion-body {
     background: rgba(var(--color-black-rgb), 0.9);
+    color: var(--color-white);
   }
   
   /*--------------------------------------------------------------
