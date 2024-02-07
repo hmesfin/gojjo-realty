@@ -98,6 +98,7 @@ class AboutPage(BasePagesModel):
 class ContactPage(BasePagesModel):
     name = models.CharField(_('name'), max_length=255)
     type = models.CharField(_('type'), max_length=255, choices=PAGE_TYPE_CHOICES)
+    contact_cta = models.TextField(_('contact cta'), max_length=255, blank=True, null=True)
     contact_image = models.ImageField(_('contact image'), upload_to='contact/uploads/')
     primary_email = models.EmailField(_('primary email'), max_length=255)
     support_email = models.EmailField(_('support email'), max_length=255, blank=True, null=True)

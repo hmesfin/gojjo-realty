@@ -6,7 +6,9 @@
 
       <div class="section-header">
         <h2>{% trans "Contact Us" %}</h2>
-        <p>Ea vitae aspernatur deserunt voluptatem impedit deserunt magnam occaecati dssumenda quas ut ad dolores adipisci aliquam.</p>
+        {% if contact_info.contact_cta %}
+        <p>{{ contact_info.contact_cta }}</p>
+        {% endif %}
       </div>
 
     </div>

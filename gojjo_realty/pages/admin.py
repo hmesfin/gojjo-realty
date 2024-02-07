@@ -254,7 +254,7 @@ class ContactPageAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (_('Contact Page'), {
-            'fields': ('name', 'type', 'contact_image', 'primary_email', 'support_email', 'compliance_email', 'phone', 'fax', 'address')
+            'fields': ('name', 'type', 'contact_cta', 'contact_image', 'primary_email', 'support_email', 'compliance_email', 'phone', 'fax', 'address')
         }),
         (_('Date Information'), {
             'classes': ('collapse',),
