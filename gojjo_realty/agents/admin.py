@@ -49,7 +49,7 @@ class AgentAdmin(admin.ModelAdmin):
             'fields': ('user', 'is_active')
         }),
         ('Personal Information', {
-            'fields': ('first_name', 'last_name', 'agent_photo', 'phone', 'gender', 'gender_id', 'role', 'focus_areas', 'agent_bio')
+            'fields': ('first_name', 'last_name', 'agent_photo', 'phone', 'gender', 'gender_id', 'role', 'focus_areas', 'agent_bio', 'agent_short_bio')
         }),
         ('Start-End Dates', {
             'fields': ('start_date', 'termination_date',)

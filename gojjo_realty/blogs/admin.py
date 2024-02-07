@@ -20,15 +20,15 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['title', 'category', 'published', 'created_date', 'modified_date']
+    list_display = ['title', 'category', 'published', 'pub_date', 'created_date', 'modified_date']
     list_filter = ['category', 'published', 'created_date', 'modified_date']
     search_fields = ['title', 'subtitle', 'text']
     fieldsets = (
         (None, {
-            'fields': ('user', 'category', 'published')
+            'fields': ('author', 'category', 'published')
         }),
         ('Post Information', {
-            'fields': ('title', 'subtitle', 'image', 'text', 'tldr', 'tags')
+            'fields': ('title', 'subtitle', 'image', 'text', 'tldr', 'tags', 'pub_date')
         }),
     )
     readonly_fields = ['created_date', 'modified_date']
@@ -36,7 +36,7 @@ class PostAdmin(admin.ModelAdmin):
     save_as = True
     save_as_continue = True
     save_on_bottom = True
-    autocomplete_fields = ['user',]
+    autocomplete_fields = ['author',]
 
 @admin.register(BlogMeta)
 class BlogMetaAdmin(admin.ModelAdmin):

@@ -116,6 +116,7 @@ class Agent(BaseAgentModel):
     gender = models.CharField(_("Gender"), max_length=255, blank=True, choices=GENDER_CHOICES)
     gender_id = models.CharField(_("Gender ID"), max_length=255, blank=True, choices=GENDER_ID_CHOICES)
     agent_bio = RichTextField(_("Bio"), blank=True)
+    agent_short_bio = models.TextField(_("Short Bio"), max_length=255, blank=True)
     social_accounts = models.ManyToManyField(SocialAccount, blank=True, related_name='agent_social_accounts', verbose_name=_("Social Accounts"))
     licenses = models.ManyToManyField(License, blank=True, related_name='agent_licenses', verbose_name=_("Licenses"))
     focus_areas = ArrayField(models.CharField(max_length=255, blank=True), blank=True, null=True,)

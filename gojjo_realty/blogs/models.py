@@ -74,7 +74,7 @@ class Category(BaseBlogClass):
         ordering = ['name']
 
 class Post(BaseBlogClass):
-    user = models.ForeignKey(User, verbose_name=_('author'), on_delete=models.CASCADE, blank=True, null=True)
+    author = models.ForeignKey(Agent, verbose_name=_('author'), on_delete=models.CASCADE, blank=True, null=True)
     category = models.ForeignKey(Category, verbose_name=_('category'), on_delete=models.CASCADE, related_name='post_set')
     title = models.CharField(_('title'), max_length=255)
     subtitle = models.CharField(_('subtitle'), max_length=255, blank=True, null=True)
@@ -105,8 +105,8 @@ class Post(BaseBlogClass):
     
 
     def author_name(self):
-        if self.user:
-            return self.user
+        if self.author:
+            return self.author.get_full_name
         return 'Anonymous'
 
     def save(self, *args, **kwargs):

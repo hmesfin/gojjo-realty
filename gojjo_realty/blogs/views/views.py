@@ -1,7 +1,8 @@
 from django.views.generic import ListView, DetailView
 from gojjo_realty.blogs.models import Post, Category, BlogMeta
+from gojjo_realty.agents.models import SocialAccount
 from django.shortcuts import get_object_or_404
-from django.db.models import Sum
+from django.db.models import Sum, Count
 
 class PostListView(ListView):
     model = Post
@@ -28,6 +29,9 @@ class PostDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(PostDetailView, self).get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
+        context['recent_posts'] = Post.objects.published().order_by('-pub_date')[:3]
+        context['category_count'] = Category.objects.annotate(post_count=Count('post_set')).order_by('-post_count')
+        context['tags'] = self.object.tags
         context['meta'] = BlogMeta.objects.all().first()
         context['blog_title'] = self.object.title
         return context

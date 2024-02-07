@@ -1,4 +1,4 @@
-{% load static i18n %}
+{% load static i18n  %}
 
 <section id="recent-blog-posts" class="recent-blog-posts">
 
@@ -6,7 +6,9 @@
 
       <div class="section-header">
         <h2>{{ meta.blog_name }}</h2>
-        <p>{{ meta.subtitle }}</p>
+        <h4>{{ meta.subtitle }}</h4>
+        <br>
+        <p>{{ meta.description }}</p>
       </div>
 
       <div class="row">
@@ -22,11 +24,11 @@
                 class="img-fluid" alt=""></div>
             <div class="meta">
               <span class="post-date">{{ blog.created_date|date:"DATE_FORMAT" }}</span>
-              <span class="post-author"> / {{blog.author_name }}</span>
+              <span class="post-author"> /  {{ blog.author.get_full_name }}</span>
             </div>
             <h3 class="post-title">{{blog.title }}</h3>
             <p>{{ blog.text|safe|truncatewords:30}}</p>
-            <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+            <a href="{% url 'blogs:blog_detail' slug=blog.slug %}" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
         {% endfor %}
