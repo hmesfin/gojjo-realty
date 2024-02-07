@@ -4171,3 +4171,66 @@
 .bd-mode-toggle.light-mode .theme-icon {
   fill: var(--color-white);
 }
+
+/*--------------------------------------------------------------
+# Back to top button
+--------------------------------------------------------------*/
+
+.back-to-top {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: 4px;
+  border-radius: 20%;
+}
+
+[data-bs-theme] .back-to-top {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+}
+
+.back-to-top.theme-icon-active {
+  fill: yellow!important;
+}
+
+[data-bs-theme] .back-to-top.theme-icon
+{
+  fill: var(--color-white)!important;
+}
+
+.back-to-top.theme-icon {
+  fill: var(--color-white)!important;
+}
+
+[data-bs-theme] .back-to-top.light-mode {
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
+
+/*--------------------------------------------------------------
+# Crispy forms styles
+--------------------------------------------------------------*/
+
+.form-floating {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.form-floating label {
+  padding: 0 0 0 10px;
+  font-size: 14px;
+  color: var(--color-secondary);
+  opacity: 0.5;
+  transition: 0.3s;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+
+[data-bs-theme='dark'].form-floating label {
+  color: var(--color-secondary-light);
+}
