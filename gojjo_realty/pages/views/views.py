@@ -85,6 +85,7 @@ class ContactPageView(SuccessMessageMixin, TemplateView, FormView):
         return super().form_invalid(form)
     
     def post(self, request, *args, **kwargs):
+        send_to_email = ContactPage.objects.filter(type="primary").first().primary_email
         form = ContactMessageForm(request.POST)
         if form.is_valid():
             first_name = form.cleaned_data['first_name']
@@ -99,7 +100,7 @@ class ContactPageView(SuccessMessageMixin, TemplateView, FormView):
             email_message += f'Phone: {phone}\n\n'
             email_message += f'Subject: {subject}\n\n'
             email_message += f'Message: {message}\n\n'
-            send_to = ['contact_info.primary_email']
+            send_to = [send_to_email,]
             send_mail(
                 email_subject,
                 email_message,
