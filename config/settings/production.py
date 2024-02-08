@@ -6,6 +6,8 @@ from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.logging import LoggingIntegration
 from sentry_sdk.integrations.redis import RedisIntegration
 
+import openai
+
 from .base import *  # noqa
 from .base import env
 
@@ -162,7 +164,7 @@ integrations = [
 sentry_sdk.init(
     dsn=SENTRY_DSN,
     integrations=integrations,
-    environment=env("SENTRY_ENVIRONMENT", default="production"),
+    environment=env("_ENVIRONMENT", default="production"),
     traces_sample_rate=env.float("SENTRY_TRACES_SAMPLE_RATE", default=0.0),
 )
 
@@ -183,4 +185,5 @@ RECAPTCHA_REQUIRED_SCORE = 0.85
 
 # OpenAI API
 # ------------------------------------------------------------------------------
-OPENAI_API_KEY = env("OPENAI_API_KEY")
+OPENAI_API_KEY = env('OPENAI_API_KEY')
+openai.api_key = env['OPENAI_API_KEY']
