@@ -186,4 +186,3 @@ RECAPTCHA_REQUIRED_SCORE = 0.85
 # OpenAI API
 # ------------------------------------------------------------------------------
 OPENAI_API_KEY = env('OPENAI_API_KEY')
-openai.api_key = env['OPENAI_API_KEY']
