@@ -182,4 +182,5 @@ RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
 RECAPTCHA_REQUIRED_SCORE = 0.85
 
 # OpenAI API
+# ------------------------------------------------------------------------------
 OPENAI_API_KEY = env("OPENAI_API_KEY")
