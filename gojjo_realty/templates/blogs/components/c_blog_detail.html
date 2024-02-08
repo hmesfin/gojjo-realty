@@ -22,6 +22,16 @@
               </ul>
             </div><!-- End meta top -->
 
+            <div class="tldr mt-4 mb-4">
+              <h2 class="title m-4">TL;DR</h2>
+              <div class="post-tldr d-flex align-items-center">
+                <i class="bi bi-file-earmark-text"></i>
+                <p>
+                  {{ blog.tldr|safe }}
+                </p>
+              </div>
+            </div><!-- End post tldr -->
+
             <div class="content">
               <p>
                 {{ blog.text|safe }}

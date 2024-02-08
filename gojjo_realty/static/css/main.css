@@ -3463,11 +3463,43 @@
   .blog .blog-details .meta-bottom .share i {
     padding-left: 5px;
   }
-  
+
+  .blog .tldr {
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 16px rgba(var(--color-black-rgb), 0.1);
+    border-radius: 4px;
+  }
+
+  [data-bs-theme='dark'] .blog .tldr {
+    box-shadow: 0 4px 16px rgba(var(--color-gray-rgb), 0.2);
+  }
+
+  .blog .tldr .title {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+  }
+
+  .blog .post-tldr {
+    margin-top: 10px;
+  }
+
+  .blog .post-tldr i {
+    font-size: 48px;
+    margin-right: 12px;
+    line-height: 0;
+    color: rgba(var(--color-primary-rgb), 0.8);
+  }
+
   .blog .post-author {
     padding: 20px;
     margin-top: 30px;
     box-shadow: 0 4px 16px rgba(var(--color-black-rgb), 0.1);
+  }
+
+  [data-bs-theme='dark'] .blog .post-author {
+    background: rgba(var(--color-black-rgb), 0.9);
   }
 
   [data-bs-theme='dark'] .blog .post-author {

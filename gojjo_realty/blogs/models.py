@@ -9,6 +9,9 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from ckeditor.fields import RichTextField
+from taggit.managers import TaggableManager
+
+from gojjo_realty.utils.openapi import generate_summary
 
 
 User = get_user_model()
@@ -82,7 +85,7 @@ class Post(BaseBlogClass):
     image = models.ImageField(_('header image'), blank=True, null=True, upload_to='blog/uploads/')
     text = RichTextField(_('text'))
     tldr = RichTextField(_('TL;DR'), blank=True, null=True)
-    tags = ArrayField(models.CharField(max_length=255, blank=True), blank=True, null=True, verbose_name=_('tags'), help_text=_('Enter a comma-separated list of tags.'))
+    tags = TaggableManager(_('tags'), blank=True)
     view_count = models.IntegerField(_('view count'), default=0)
     published = models.BooleanField(_('published'), default=False)
 
@@ -94,16 +97,6 @@ class Post(BaseBlogClass):
     def make_slug(self):
         return slugify(self.title)
     
-    def split_tldr(self):
-        if self.tldr:
-            tldr_length = len(self.tldr)
-            half_length = tldr_length // 2
-            first_half = self.tldr[:half_length]
-            second_half = self.tldr[half_length:]
-            return first_half, second_half
-        return None, None
-    
-
     def author_name(self):
         if self.author:
             return self.author.get_full_name
@@ -114,6 +107,8 @@ class Post(BaseBlogClass):
         Set publish date to the date when the post's published status is switched to True,
         reset the date if the post is unpublished
         """
+        if not self.tldr:
+            self.tldr = generate_summary(self.text)
         self.slug = self.make_slug()
         if self.published and self.pub_date is None:
             self.pub_date = datetime.now()
