@@ -2,7 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from phonenumber_field.formfields import PhoneNumberField
-from gojjo_realty.contacts.models.contacts import Contact, ContactAddress, Relationship, ContactAdditionalInfo
+from gojjo_realty.contacts.models.contacts import Contact
 
 class AddContactForm(forms.ModelForm):
     class Meta:
