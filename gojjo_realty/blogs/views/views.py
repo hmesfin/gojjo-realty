@@ -31,7 +31,6 @@ class PostDetailView(DetailView):
         context['categories'] = Category.objects.all()
         context['recent_posts'] = Post.objects.published().order_by('-pub_date')[:3]
         context['category_count'] = Category.objects.annotate(post_count=Count('post_set')).order_by('-post_count')
-        context['tags'] = self.object.tags
         context['meta'] = BlogMeta.objects.all().first()
         context['page_title'] = "Blogs List"
         context['list_view_url'] = reverse_lazy('blogs:blog_list')

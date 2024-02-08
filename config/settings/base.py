@@ -84,7 +84,6 @@ THIRD_PARTY_APPS = [
     "phonenumber_field",
     "phonenumbers",
     "django_recaptcha",
-    "taggit",
 ]
 
 LOCAL_APPS = [
@@ -360,9 +359,6 @@ CKEDITOR_FILENAME_GENERATOR = 'gojjo_realty.blog.utils.get_filename'
 # RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
 # RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
 # RECAPTCHA_REQUIRED_SCORE = 0.85
-
-# Django Taggit
-TAGGIT_CASE_INSENSITIVE = True
 
 # OpenAI API
 OPENAI_API_KEY = env("OPENAI_API_KEY")

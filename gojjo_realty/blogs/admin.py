@@ -28,7 +28,7 @@ class PostAdmin(admin.ModelAdmin):
             'fields': ('author', 'category', 'published')
         }),
         ('Post Information', {
-            'fields': ('title', 'subtitle', 'image', 'text', 'tldr', 'tags', 'pub_date')
+            'fields': ('title', 'subtitle', 'image', 'text', 'tldr', 'pub_date')
         }),
     )
     readonly_fields = ['created_date', 'modified_date']

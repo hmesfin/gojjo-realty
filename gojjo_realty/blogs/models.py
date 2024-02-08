@@ -9,7 +9,6 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from ckeditor.fields import RichTextField
-from taggit.managers import TaggableManager
 
 from gojjo_realty.utils.openapi import generate_summary
 
@@ -85,7 +84,6 @@ class Post(BaseBlogClass):
     image = models.ImageField(_('header image'), blank=True, null=True, upload_to='blog/uploads/')
     text = RichTextField(_('text'))
     tldr = RichTextField(_('TL;DR'), blank=True, null=True)
-    tags = TaggableManager(_('tags'), blank=True)
     view_count = models.IntegerField(_('view count'), default=0)
     published = models.BooleanField(_('published'), default=False)
 

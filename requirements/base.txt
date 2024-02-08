@@ -26,5 +26,4 @@ django-phonenumber-field[phonenumberslite]==7.3.0 # https://github.com/stefanfou
 django-ckeditor==6.7.1 # https://github.com/django-ckeditor/django-ckeditor
 django-components==0.34.1 # https://github.com/EmilStenstrom/django-components
 django-recaptcha==4.0.0 # https://github.com/django-recaptcha/django-recaptcha
-django-taggit==5.0.1 # https://github.com/jazzband/django-taggit
 openai==1.11.1 # https://github.com/openai/openai-python
