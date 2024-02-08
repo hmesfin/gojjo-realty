@@ -145,6 +145,7 @@ class ServiesDetailPageView(DetailView):
         context['service'] = Service.objects.filter(slug=self.kwargs['slug'])
         context['call_to_action'] = CallToAction.objects.filter(is_published=True).first()
         context['page_title'] = "Our Services"
+        context['list_view_url'] = reverse_lazy('pages:services')
         context['detail_page_title'] = self.object.name
         return context
 

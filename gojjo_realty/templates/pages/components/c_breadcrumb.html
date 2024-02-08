@@ -6,7 +6,12 @@
       <div class="d-flex justify-content-end align-items-center">
         <ol>
           <li><a href="{% url 'pages:home' %}">{% trans "Home"%}</a></li>
+          {% if page_title and detail_page_title %}
+          <li><a href="{{ list_view_url }}">{{ page_title }}</a></li>
+          <li>{{ detail_page_title }}</li>
+          {% elif page_title %}
           <li>{{ page_title }}</li>
+          {% endif %}
         </ol>
       </div>
 

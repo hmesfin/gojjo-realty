@@ -1,8 +1,8 @@
 from django.views.generic import ListView, DetailView
 from gojjo_realty.blogs.models import Post, Category, BlogMeta
-from gojjo_realty.agents.models import SocialAccount
 from django.shortcuts import get_object_or_404
-from django.db.models import Sum, Count
+from django.db.models import Count
+from django.urls import reverse_lazy
 
 class PostListView(ListView):
     model = Post
@@ -15,7 +15,7 @@ class PostListView(ListView):
         context = super(PostListView, self).get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
         context['meta'] = BlogMeta.objects.all().first()
-        context['blog_title'] = 'Our Latest Blogs'
+        context['blog_title'] = 'Blogs List'
         return context
 
 class PostDetailView(DetailView):
@@ -33,7 +33,9 @@ class PostDetailView(DetailView):
         context['category_count'] = Category.objects.annotate(post_count=Count('post_set')).order_by('-post_count')
         context['tags'] = self.object.tags
         context['meta'] = BlogMeta.objects.all().first()
-        context['blog_title'] = self.object.title
+        context['page_title'] = "Blogs List"
+        context['list_view_url'] = reverse_lazy('blogs:blog_list')
+        context['detail_page_title'] = self.object.title
         return context
 
     def increment_view_count(self):
