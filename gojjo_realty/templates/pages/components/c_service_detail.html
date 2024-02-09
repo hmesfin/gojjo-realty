@@ -4,19 +4,23 @@
         <div class="container" data-aos="fade-up">
 
             <div class="section-header">
-                {% if service %}
-                    <h2>{{ service.name }}</h2>
-                    <p>{{ service.subtitle }}</p>
-                {% else %}
-                <h2>Sorry, no details for this service!</h2>
-                {% endif %}
+                    <h2>{{ detail_page_title}}</h2>
+                    <h4>{{ service.subtitle }}</h4>
             </div>
-
-            {% if service %}
-                <p>
-                    {{ service.description|safe }}
-                </p>
-            {% endif %}
-
+            <div class="row gy-5">
+                <div class="col-lg-5">
+                    <img src="{{ service.image.url }}" class="img-fluid pt-3" alt="{{ detail_page_title}} image">
+                </div>
+                <div class="col-lg-7">
+                    <div class="service-content">
+                        <p><strong>
+                            {{ service.description|safe }}
+                        </strong></p>
+                        <p>
+                            {{ service.long_description|safe }}
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>

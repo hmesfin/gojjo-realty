@@ -1,8 +1,95 @@
 {% load static i18n %}
 
-<section id="agent" class="agent-detail">
-    <div class="container" data-aos="fade-up">
-        <div class="section-title">
-      </div>
-    </div>
-</section>
+<section class="inner-page">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-header">
+                    <h2>{{ agent.first_name|upper}}<span class="color-primary"> {{ agent.last_name }}</span></h2>
+                    <h4>{{ agent.get_role_display }} | REALTOR<sup>®</sup></h4>
+            </div>
+            <div class="agent-socials justify-content-around" style="width: 200px;">
+              {% for account in agent.agent_social_account.all %}
+              {% if account.name == "tiktok" %}
+              <a href="{{ account.url }}"><i class="bi bi-tiktok"></i></a>
+              {% endif %}
+              {% if account.name == "facebook" %}
+              <a href="{{ account.url }}"><i class="bi bi-facebook"></i></a>
+              {% endif %}
+              {% if account.name == "instagram" %}
+              <a href="{{ account.url }}"><i class="bi bi-instagram"></i></a>
+              {% endif %}
+              {% if account.name == "twitter" %}
+              <a href="{{ account.url }}"><i class="bi bi-twitter-x"></i></a>
+              {% endif %}
+              {% if account.name == "youtube" %}
+              <a href="{{ account.url }}"><i class="bi bi-youtube"></i></a>
+              {% endif %}
+              {% if account.name == "linkedin" %}
+              <a href="{{ account.url }}"><i class="bi bi-linkedin"></i></a>
+              {% endif %}
+              {% endfor %}
+            </div>
+            <div class="row gy-5">
+                <div class="col-lg-5 d-flex align-content-center rounded ">
+                    <img src="{% if agent.agent_photo %}
+                    {{ agent.agent_photo.url }}
+                    {% else %}
+                    {% static 'images/defaults/default_person.png' %} 
+                    {% endif %}"
+                    class="img-fluid" alt="{{agent.get_email}} image">
+                </div>
+                <div class="col-lg-7">
+                    <div class="service-content">
+                        <p><strong>
+                            {{ agent.agent_short_bio|safe }}
+                        </strong></p>
+                        <p>
+                            {{ agent.agent_bio|safe }}
+                        </p>
+                    </div>
+                </div>
+                <hr>
+                <div class="col-lg-6">
+                    <div class="service-content agent-contact">
+                        <h3>Contact {{agent.first_name}}</h3>
+                        <ul>
+                            <li><i class="bi bi-telephone"></i>  {{ agent.phone }}</li>
+                            <li><i class="bi bi-envelope"></i>  <a href="mailto:{{ agent.get_email }}">{{ agent.get_email }}</a></li>
+                            <li><i class="bi bi-geo-alt"></i>  {{ agent.address.address_line_1 }}</li>
+                            <li><i class="bi bi-clock"></i>  {{ agent.agent_hours }}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="service-content areas-of-focus">
+                        <h4>Areas of Focus</h4>
+                        <ul>
+                          <span class="badge rounded-pill bg-primary">Residential</span>
+                          <span class="badge rounded-pill bg-primary">Commercial</span>
+                          <span class="badge rounded-pill bg-primary">Investment</span>
+                          <span class="badge rounded-pill bg-primary">Development</span>
+                          <span class="badge rounded-pill bg-primary">Property Management</span>
+                          <span class="badge rounded-pill bg-primary">Relocation</span>
+                          <span class="badge rounded-pill bg-primary">Consulting</span>
+                            {% comment %} {% for focus in agent.agent_focus.all %}
+                            <li>{{ focus.name }}</li>
+                            {% endfor %} {% endcomment %}
+                        </ul>
+                        <h4>Practice Areas</h4>
+                        <ul>
+                          <span class="badge rounded-pill bg-primary">Apple Valley</span>
+                          <span class="badge rounded-pill bg-primary">Burnsville</span>
+                          <span class="badge rounded-pill bg-primary">Rosemount</span>
+                          <span class="badge rounded-pill bg-primary">Lakeville</span>
+                          <span class="badge rounded-pill bg-primary">Eagan</span>
+                          <span class="badge rounded-pill bg-primary">Bloomington</span>
+                          <span class="badge rounded-pill bg-primary">Brooklyn Park</span>
+                            {% comment %} {% for focus in agent.agent_focus.all %}
+                            <li>{{ focus.name }}</li>
+                            {% endfor %} {% endcomment %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>

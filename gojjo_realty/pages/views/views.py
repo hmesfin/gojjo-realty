@@ -133,8 +133,8 @@ class ServicesListPageView(ListView):
     
 
 class ServiesDetailPageView(DetailView):
-    template_name = 'pages/service_detail.html'
     model = Service
+    template_name = 'pages/service_detail.html'
     context_object_name = 'service'
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
@@ -142,7 +142,7 @@ class ServiesDetailPageView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ServiesDetailPageView, self).get_context_data(**kwargs)
-        context['service'] = Service.objects.filter(slug=self.kwargs['slug'])
+        context['service_page'] = ServicesPage.objects.filter(type="primary").first()
         context['call_to_action'] = CallToAction.objects.filter(is_published=True).first()
         context['page_title'] = "Our Services"
         context['list_view_url'] = reverse_lazy('pages:services')

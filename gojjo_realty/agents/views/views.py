@@ -34,7 +34,7 @@ class AgentDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['licenses'] = License.objects.filter(licensee=self.object)
         context['social_accounts'] = SocialAccount.objects.filter(agent=self.object)
-        context['addresses'] = Address.objects.filter(agent=self.object)
+        context['address'] = Address.objects.filter(agent=self.object).first()
         context['page_title'] = "Our Agents"
         context['page_subtitle'] = "Realtor Extraordinaire"
         context['detail_page_title'] = self.object.get_full_name()

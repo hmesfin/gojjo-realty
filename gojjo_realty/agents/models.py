@@ -120,6 +120,7 @@ class Agent(BaseAgentModel):
     social_accounts = models.ManyToManyField(SocialAccount, blank=True, related_name='agent_social_accounts', verbose_name=_("Social Accounts"))
     licenses = models.ManyToManyField(License, blank=True, related_name='agent_licenses', verbose_name=_("Licenses"))
     focus_areas = ArrayField(models.CharField(max_length=255, blank=True), blank=True, null=True,)
+    practice_areas = ArrayField(models.CharField(max_length=255, blank=True), blank=True, null=True,)
     addresses = models.ManyToManyField(Address, blank=True, related_name='agent_addresses', verbose_name=_("Addresses"))
     start_date = models.DateField(_("Start Date"), blank=True, null=True)
     termination_date = models.DateField(_("Termination Date"), blank=True, null=True)
