@@ -10,7 +10,7 @@ from django.utils.translation import gettext_lazy as _
 
 from ckeditor.fields import RichTextField
 
-from gojjo_realty.utils.openapi import generate_summary
+# from gojjo_realty.utils.openapi import generate_summary
 
 
 User = get_user_model()
