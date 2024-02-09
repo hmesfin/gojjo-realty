@@ -43,6 +43,7 @@ class ContactAgentForm(forms.Form):
                 FloatingField('message', css_class='form-group'),
             )
             ),
+            'captcha',
             FormActions(
             Submit('submit', _('Submit'), css_class='btn btn-primary')
             )
