@@ -10,7 +10,7 @@ from django.utils.translation import gettext_lazy as _
 
 from ckeditor.fields import RichTextField
 
-# from gojjo_realty.utils.openapi import generate_summary
+from gojjo_realty.utils.openapi import generate_summary
 
 
 User = get_user_model()
@@ -105,8 +105,8 @@ class Post(BaseBlogClass):
         Set publish date to the date when the post's published status is switched to True,
         reset the date if the post is unpublished
         """
-        # if not self.tldr:
-        #     self.tldr = generate_summary(self.text)
+        if not self.tldr:
+            self.tldr = generate_summary(self.text)
         self.slug = self.make_slug()
         if self.published and self.pub_date is None:
             self.pub_date = datetime.now()

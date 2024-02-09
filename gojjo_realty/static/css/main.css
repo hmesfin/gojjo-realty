@@ -2711,6 +2711,11 @@
     margin-right: 4px;
     color: var(--color-primary);
   }
+
+  .inner-page .areas-of-focus span {
+    padding: 10px;
+    margin: 0 10px 10px 0;
+  }
   
   .team .team-member .social a {
     transition: color 0.3s;

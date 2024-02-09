@@ -1,4 +1,5 @@
 {% load static i18n %}
+{% load crispy_forms_tags %}
 
 <section class="inner-page">
         <div class="container" data-aos="fade-up">
@@ -36,7 +37,7 @@
                     {% else %}
                     {% static 'images/defaults/default_person.png' %} 
                     {% endif %}"
-                    class="img-fluid" alt="{{agent.get_email}} image">
+                    class="img-fluid" alt="{{agent.get_full_name }} image">
                 </div>
                 <div class="col-lg-7">
                     <div class="service-content">
@@ -51,43 +52,31 @@
                 <hr>
                 <div class="col-lg-6">
                     <div class="service-content agent-contact">
-                        <h3>Contact {{agent.first_name}}</h3>
-                        <ul>
-                            <li><i class="bi bi-telephone"></i>  {{ agent.phone }}</li>
-                            <li><i class="bi bi-envelope"></i>  <a href="mailto:{{ agent.get_email }}">{{ agent.get_email }}</a></li>
-                            <li><i class="bi bi-geo-alt"></i>  {{ agent.address.address_line_1 }}</li>
-                            <li><i class="bi bi-clock"></i>  {{ agent.agent_hours }}</li>
-                        </ul>
+                        <h3>Contact <span class="color-primary">{{agent.first_name}}</span></h3>
+                        <form method="POST">
+                            {% csrf_token %}
+                            {% crispy agent_contact_form %}
+                        </form>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="service-content areas-of-focus">
+                    <div class="service-content areas-of-focus gy-4">
                         <h4>Areas of Focus</h4>
                         <ul>
-                          <span class="badge rounded-pill bg-primary">Residential</span>
-                          <span class="badge rounded-pill bg-primary">Commercial</span>
-                          <span class="badge rounded-pill bg-primary">Investment</span>
-                          <span class="badge rounded-pill bg-primary">Development</span>
-                          <span class="badge rounded-pill bg-primary">Property Management</span>
-                          <span class="badge rounded-pill bg-primary">Relocation</span>
-                          <span class="badge rounded-pill bg-primary">Consulting</span>
-                            {% comment %} {% for focus in agent.agent_focus.all %}
-                            <li>{{ focus.name }}</li>
-                            {% endfor %} {% endcomment %}
+                            {% for area in agent.focus_areas %}
+                            <span class="badge rounded-pill bg-primary">{{ area|capfirst}}</span>
+                            {% endfor %}
                         </ul>
+                        <br>
+                        <br>
+                        {% if agent.practice_areas%}
                         <h4>Practice Areas</h4>
                         <ul>
-                          <span class="badge rounded-pill bg-primary">Apple Valley</span>
-                          <span class="badge rounded-pill bg-primary">Burnsville</span>
-                          <span class="badge rounded-pill bg-primary">Rosemount</span>
-                          <span class="badge rounded-pill bg-primary">Lakeville</span>
-                          <span class="badge rounded-pill bg-primary">Eagan</span>
-                          <span class="badge rounded-pill bg-primary">Bloomington</span>
-                          <span class="badge rounded-pill bg-primary">Brooklyn Park</span>
-                            {% comment %} {% for focus in agent.agent_focus.all %}
-                            <li>{{ focus.name }}</li>
-                            {% endfor %} {% endcomment %}
+                            {% for area in agent.practice_areas %}
+                          <span class="badge rounded-pill bg-primary">{{ area|capfirst}}</span>
+                            {% endfor %}
                         </ul>
+                        {% endif %}
                     </div>
                 </div>
             </div>

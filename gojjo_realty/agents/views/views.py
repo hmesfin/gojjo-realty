@@ -1,12 +1,15 @@
 from django.views.generic import ListView, DetailView, UpdateView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.shortcuts import HttpResponse
+from django.contrib import messages
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 
 from gojjo_realty.agents.models import Agent, License, SocialAccount, Address, AgentPage
 
-from gojjo_realty.agents.forms import AgentForm
+from gojjo_realty.agents.forms.contact_agent import ContactAgentForm
+from gojjo_realty.agents.forms.agent_form import AgentForm
 
 class AgentListView(ListView):
     model = Agent
@@ -32,6 +35,8 @@ class AgentDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            context['agent_contact_form'] = ContactAgentForm()
         context['licenses'] = License.objects.filter(licensee=self.object)
         context['social_accounts'] = SocialAccount.objects.filter(agent=self.object)
         context['address'] = Address.objects.filter(agent=self.object).first()
@@ -39,6 +44,17 @@ class AgentDetailView(DetailView):
         context['page_subtitle'] = "Realtor Extraordinaire"
         context['detail_page_title'] = self.object.get_full_name()
         return context
+    
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = ContactAgentForm(request.POST)
+        form = ContactAgentForm(request.POST)
+        if form.is_valid():
+            form.send_email(self.object.email, self.object.get_full_name())
+            messages.success(request, 'Your message has been sent successfully')
+            return redirect('agents:agent_detail', slug=self.object.slug)
+        else:
+            return self.render_to_response(self.get_context_data(agent_contact_form=form))
 
 class MyLinksView(TemplateView):
     model = Agent
