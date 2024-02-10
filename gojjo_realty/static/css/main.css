@@ -2712,11 +2712,23 @@
     color: var(--color-primary);
   }
 
+  .inner-page .areas-of-focus {
+    padding: 10px;
+    margin-top: 40px;
+  }
+
   .inner-page .areas-of-focus span {
     padding: 10px;
     margin: 0 10px 10px 0;
   }
   
+  .inner-page .areas-of-focus .focus-header {
+    font-size: 24px;
+    font-weight: 200;
+    margin-bottom: 10px;
+    margin-left: 40px!important;
+  }
+
   .team .team-member .social a {
     transition: color 0.3s;
     color: var(--color-white);

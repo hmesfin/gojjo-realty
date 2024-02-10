@@ -52,7 +52,7 @@
                 <hr>
                 <div class="col-lg-6">
                     <div class="service-content agent-contact">
-                        <h3>Contact <span class="color-primary">{{agent.first_name}}</span></h3>
+                        <h3>Contact <span class="color-primary ml-1">{{agent.first_name}}</span></h3>
                         <form method="POST">
                             {% csrf_token %}
                             {% crispy agent_contact_form %}
@@ -61,7 +61,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="service-content areas-of-focus gy-4">
-                        <h4>Areas of Focus</h4>
+                        <h4 class="focus-header">Areas of Focus</h4>
                         <ul>
                             {% for area in agent.focus_areas %}
                             <span class="badge rounded-pill bg-primary">{{ area|capfirst}}</span>
@@ -70,7 +70,7 @@
                         <br>
                         <br>
                         {% if agent.practice_areas%}
-                        <h4>Practice Areas</h4>
+                        <h4 class="focus-header">Practice Areas</h4>
                         <ul>
                             {% for area in agent.practice_areas %}
                           <span class="badge rounded-pill bg-primary">{{ area|capfirst}}</span>
