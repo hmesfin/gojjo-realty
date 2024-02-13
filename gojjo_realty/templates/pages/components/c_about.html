@@ -5,7 +5,13 @@
 
       <div class="section-header">
         <h2>{% trans "About Us" %}</h2>
-        <p>{{ about_page.subtitle|safe }}</p>
+        <p>
+          {% if about_page.subtitle %}
+          {{ about_page.subtitle|safe }}
+          {% else %}
+          {% lorem 1 b %}
+          {% endif %}
+        </p>
       </div>
 
       <div class="row g-4 g-lg-5" data-aos="fade-up" data-aos-delay="200">
@@ -32,20 +38,36 @@
             <div class="tab-pane fade show active" id="tab1">
 
               <p class="fst-italic">
+                {% if about_page.about_us%}
                 {{ about_page.about_us|safe }}
+                {% else %}
+                {% lorem 2 b %}
+                {% endif %}
               </p>
 
             </div><!-- End Tab 1 Content -->
 
             <div class="tab-pane fade show" id="tab2">
 
-              <p class="fst-italic">{{ about_page.our_whys|safe }}</p>
+              <p class="fst-italic">
+                {% if about_page.our_whys%}
+                {{ about_page.our_whys|safe }}
+                {% else %}
+                {% lorem 2 b %}
+                {% endif %}
+              </p>
 
             </div><!-- End Tab 2 Content -->
 
             <div class="tab-pane fade show" id="tab3">
 
-              <p class="fst-italic">{{ about_page.our_commitments|safe }}</p>
+              <p class="fst-italic">
+                {% if about_page.our_commitments%}
+                {{ about_page.our_commitments|safe }}
+                {% else %}
+                {% lorem 2 b %}
+                {% endif %}
+              </p>
 
             </div><!-- End Tab 3 Content -->
 
