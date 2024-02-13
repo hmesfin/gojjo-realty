@@ -23,6 +23,7 @@ from gojjo_realty.pages.forms.contact_message_form import ContactMessageForm
 from gojjo_realty.agents.models import Agent, AgentPage
 from gojjo_realty.pages.models import Service, CallToAction, FAQ, FAQCategory, Legal
 from gojjo_realty.blogs.models import Post, Category
+from gojjo_realty.leads.models import Lead
 
 
 class HomePageView(TemplateView):
@@ -108,7 +109,6 @@ class ContactPageView(SuccessMessageMixin, TemplateView, FormView):
                 send_to,
                 fail_silently=False
             )
-            messages.success(request, 'Your message has been sent successfully! We will get back to you soon. Thank you!')
             return super().form_valid(form)
         else:
             messages.error(request, 'There was an error sending your message. Please try again.')

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+
+{% block content %}
+    {% include "pages/components/c_breadcrumb.html" %}
+    {% include "agents/components/c_agent_update.html" %}
+{% endblock %}

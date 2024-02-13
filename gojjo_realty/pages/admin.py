@@ -94,7 +94,7 @@ class LegalAdmin(admin.ModelAdmin):
     readonly_fields = ('created_date', 'modified_date')
     fieldsets = (
         (_('Legal'), {
-            'fields': ('name', 'document_type', 'content')
+            'fields': ('name', 'document_type', 'text')
         }),
         (_('Date Information'), {
             'classes': ('collapse',),
@@ -160,7 +160,7 @@ class ServiceAdmin(admin.ModelAdmin):
     readonly_fields = ('created_date', 'modified_date')
     fieldsets = (
         (_('Service'), {
-            'fields': ('name', 'subtitle', 'description', 'long_description', 'image', 'service_icon',  'is_published')
+            'fields': ('name', 'subtitle', 'description', 'full_description', 'image', 'service_icon',  'is_published')
         }),
         (_('Date Information'), {
             'classes': ('collapse',),
@@ -279,7 +279,7 @@ class AboutPageAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (_('About Page'), {
-            'fields': ('name', 'type', 'about', 'header_text', 'subtitle', 'whys', 'commitments', 'about_header_image', 'about_header_image2')
+            'fields': ('name', 'type','about_us', 'header_text', 'subtitle', 'our_whys', 'our_commitments', 'about_header_image', 'about_header_image2')
         }),
         (_('Date Information'), {
             'classes': ('collapse',),

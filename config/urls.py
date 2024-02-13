@@ -8,6 +8,8 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
+    path('admin/defender/', include('defender.urls')), # defender admin
+    path('admin/', admin.site.urls), # normal admin
     path("", include("gojjo_realty.pages.urls", namespace="pages")),
     path("blogs/", include("gojjo_realty.blogs.urls", namespace="blogs")),
     path("agents/", include("gojjo_realty.agents.urls", namespace="agents")),
@@ -17,6 +19,9 @@ urlpatterns = [
     path("users/", include("gojjo_realty.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
+    path('tinymce/', include('tinymce.urls')),
+    path("invitations/", include('invitations.urls', namespace='invitations')),
+    path("cookies/", include("cookie_consent.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # API URLS

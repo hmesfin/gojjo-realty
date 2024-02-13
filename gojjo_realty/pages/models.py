@@ -2,12 +2,13 @@ from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
-from ckeditor.fields import RichTextField
+
+from tinymce.models import HTMLField
 from django.utils.text import slugify
 
 from gojjo_realty.agents.models import Agent
 
-from gojjo_realty.pages.choices import (
+from gojjo_realty.utils.choices import (
     LINK_CATEGORY_CHOICES,
     LEGAL_DOCUMENT_CHOICES,
     SUBJECT_CHOICES,
@@ -53,6 +54,9 @@ class SiteInfo(BasePagesModel):
 
     def __str__(self):
         return self.name
+    
+    def get_site_name(self):
+        return self.name
 
     class Meta:
         verbose_name = _('site info')
@@ -81,9 +85,9 @@ class AboutPage(BasePagesModel):
     type = models.CharField(_('type'), max_length=255, choices=PAGE_TYPE_CHOICES)
     header_text = models.TextField(_('header text'), max_length=255, blank=True, null=True)
     subtitle = models.TextField(_('subtitle'), max_length=255, blank=True, null=True)
-    about = RichTextField(_('about'))
-    whys = RichTextField(_('our whys'))
-    commitments = RichTextField(_('our commitments'))
+    about_us = HTMLField(_('about us'), blank=True, null=True)
+    our_whys = HTMLField(_('our whys'), blank=True, null=True)
+    our_commitments = HTMLField(_('our commitments'), blank=True, null=True)
     about_header_image = models.ImageField(_('about header image'), upload_to='about/uploads/', blank=True, null=True)
     about_header_image2 = models.ImageField(_('about side image'), upload_to='about/uploads/', blank=True, null=True)
     
@@ -173,7 +177,7 @@ class Service(BasePagesModel):
     description = models.TextField(_('description'))
     image = models.ImageField(_('image'), upload_to='services/uploads/', blank=True, null=True)
     service_icon = models.CharField(_('service icon'), max_length=255, blank=True, null=True)
-    long_description = RichTextField(_('long description'), blank=True, null=True)
+    full_description = HTMLField(_('full description'), blank=True, null=True)
     is_published = models.BooleanField(_('is published'), default=True)
 
     def __str__(self):
@@ -267,7 +271,7 @@ class Links(BasePagesModel):
 class Legal(BasePagesModel):
     document_type = models.CharField(_('document type'), max_length=255, choices=LEGAL_DOCUMENT_CHOICES)
     name = models.CharField(_('name'), max_length=255)
-    content = RichTextField(_('content'))
+    text = HTMLField(_('text'), blank=True, null=True)
 
     def __str__(self):
         return self.name

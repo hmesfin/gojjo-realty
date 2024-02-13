@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 
 from django.urls import reverse
 
-from gojjo_realty.contacts.choices import (
+from gojjo_realty.utils.choices import (
     CONTACT_EDUCATION_LEVEL_CHOICES,
     CONTACT_EMPLOYMENT_STATUS_CHOICES,
     CONTACT_INCOME_LEVEL_CHOICES,

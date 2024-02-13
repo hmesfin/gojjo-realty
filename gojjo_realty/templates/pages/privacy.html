@@ -9,7 +9,7 @@
     {% include 'pages/components/c_breadcrumb.html' %}
     <h1>{{ page_title }}</h1>
     <hr>
-    <p>{{ privacy.content|safe }}</p>
+    <p>{{ privacy.text|safe }}</p>
     <small>
         <strong>{% trans "Last modified" %}:</strong>
         {{ privacy.modified_date|date:'d/m/Y'}}

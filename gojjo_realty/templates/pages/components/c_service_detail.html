@@ -1,10 +1,10 @@
 {% load static i18n %}
 
-<section class="inner-page">
+<section class="inner-page legal-page">
         <div class="container" data-aos="fade-up">
 
             <div class="section-header">
-                    <h2>{{ detail_page_title}}</h2>
+                    <h2 class="header">{{ detail_page_title}}</h2>
                     <h4>{{ service.subtitle }}</h4>
             </div>
             <div class="row gy-5">
@@ -17,7 +17,7 @@
                             {{ service.description|safe }}
                         </strong></p>
                         <p>
-                            {{ service.long_description|safe }}
+                            {{ service.full_description|safe }}
                         </p>
                     </div>
                 </div>

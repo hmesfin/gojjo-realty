@@ -7,7 +7,7 @@ from gojjo_realty.agents.models import Agent
 
 from django.urls import reverse
 
-from gojjo_realty.contacts.choices import (
+from gojjo_realty.utils.choices import (
     PHONE_TYPE_CHOICES,
     CONTACT_RELATIONSHIP_CHOICES,
     CONTACT_GENDER_CHOICES,

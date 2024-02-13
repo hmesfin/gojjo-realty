@@ -49,7 +49,7 @@ class AgentAdmin(admin.ModelAdmin):
             'fields': ('user', 'is_active')
         }),
         ('Personal Information', {
-            'fields': ('first_name', 'last_name', 'agent_photo', 'phone', 'gender', 'gender_id', 'role', 'focus_areas', 'practice_areas', 'agent_bio', 'agent_short_bio')
+            'fields': ('first_name', 'last_name', 'agent_photo', 'alternate_email', 'use_alt_email', 'phone', 'alternate_phone', 'gender', 'gender_id', 'role', 'focus_areas', 'practice_areas', 'bio', 'agent_short_bio')
         }),
         ('Start-End Dates', {
             'fields': ('start_date', 'termination_date',)
@@ -68,10 +68,10 @@ class AgentAdmin(admin.ModelAdmin):
 class AgentPageAdmin(admin.ModelAdmin):
     list_display = ['title', 'slug', 'is_published', 'created_date', 'modified_date']
     list_filter = ['is_published', 'created_date', 'modified_date']
-    search_fields = ['title', 'content']
+    search_fields = ['title', 'text']
     fieldsets = (
         ('Page Content', {
-            'fields': ('title', 'content', 'is_published')
+            'fields': ('title', 'text', 'is_published')
         }),
     )
     readonly_fields = ['created_date', 'modified_date']

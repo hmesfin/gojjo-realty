@@ -45,7 +45,7 @@
                             {{ agent.agent_short_bio|safe }}
                         </strong></p>
                         <p>
-                            {{ agent.agent_bio|safe }}
+                            {{ agent.bio|safe }}
                         </p>
                     </div>
                 </div>
@@ -55,7 +55,15 @@
                         <h3>Contact <span class="color-primary ml-1">{{agent.first_name}}</span></h3>
                         <form method="POST">
                             {% csrf_token %}
+                            <input type="hidden" name="agent" value="{{ agent.slug }}">
                             {% crispy agent_contact_form %}
+                            {% if agent_contact_form.errors %}
+                            {% for error in field.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </div>
+                            {% endfor %}
+                            {% endif %}
                         </form>
                     </div>
                 </div>

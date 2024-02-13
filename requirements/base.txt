@@ -23,7 +23,17 @@ django-cors-headers==4.3.1  # https://github.com/adamchainz/django-cors-headers
 # DRF-spectacular for api documentation
 drf-spectacular==0.27.1  # https://github.com/tfranzel/drf-spectacular
 django-phonenumber-field[phonenumberslite]==7.3.0 # https://github.com/stefanfoulis/django-phonenumber-field
-django-ckeditor==6.7.1 # https://github.com/django-ckeditor/django-ckeditor
+django-tinymce==3.7.1 # https://github.com/jazzband/django-tinymce
 django-components==0.34.1 # https://github.com/EmilStenstrom/django-components
 django-recaptcha==4.0.0 # https://github.com/django-recaptcha/django-recaptcha
 openai==1.11.1 # https://github.com/openai/openai-python
+sorl-thumbnail==12.10.0 # https://github.com/jazzband/sorl-thumbnail
+django-defender==0.9.7 # https://github.com/kencochrane/django-defender
+# django-two-factor-auth==1.16.0 # https://github.com/Bouke/django-two-factor-auth
+django-cookie-consent==0.4.0 # https://github.com/jazzband/django-cookie-consent
+# django-newsletter==0.9.1 # https://github.com/jazzband/django-newsletter
+# ChatterBot==1.0.8 # https://github.com/gunthercox/ChatterBot
+django-invitations==2.1.0 # https://github.com/jazzband/django-invitations
+# django-slick-reporting==1.3.0 # https://github.com/RamezIssac/django-slick-reporting
+# data-wizard==2.0.0 # https://github.com/wq/django-data-wizard
+# django-formset==1.3.8 # https://github.com/jrief/django-formset

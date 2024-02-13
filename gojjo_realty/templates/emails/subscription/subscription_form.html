@@ -1,0 +1,10 @@
+{% load static i18n %}
+{% load crispy_forms_tags %}
+
+<form method="POST">
+    {% csrf_token %}
+    {% crispy|subscription_form %}
+    {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+</form>

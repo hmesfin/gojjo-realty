@@ -77,3 +77,7 @@ RECAPTCHA_REQUIRED_SCORE = 0.85
 # # ------------------------------------------------------------------------------
 # OPENAI_API_KEY = env("OPENAI_API_KEY", de)
 
+
+# django-tinymce
+# ------------------------------------------------------------------------------
+# TINYMCE_JS_URL = BASE_DIR / "static/js/tinymce.min.js"

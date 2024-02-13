@@ -22,13 +22,13 @@ class CategoryAdmin(admin.ModelAdmin):
 class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'category', 'published', 'pub_date', 'created_date', 'modified_date']
     list_filter = ['category', 'published', 'created_date', 'modified_date']
-    search_fields = ['title', 'subtitle', 'text']
+    search_fields = ['title', 'subtitle', 'content']
     fieldsets = (
         (None, {
             'fields': ('author', 'category', 'published')
         }),
         ('Post Information', {
-            'fields': ('title', 'subtitle', 'image', 'text', 'tldr', 'pub_date')
+            'fields': ('title', 'subtitle', 'image', 'content', 'tldr', 'pub_date')
         }),
     )
     readonly_fields = ['created_date', 'modified_date']

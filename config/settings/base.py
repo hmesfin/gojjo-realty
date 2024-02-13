@@ -80,10 +80,14 @@ THIRD_PARTY_APPS = [
     "rest_framework.authtoken",
     "corsheaders",
     "drf_spectacular",
-    "ckeditor",
+    "tinymce",
     "phonenumber_field",
     "phonenumbers",
     "django_recaptcha",
+    "sorl.thumbnail",
+    "defender",
+    "invitations",
+    "cookie_consent",
 ]
 
 LOCAL_APPS = [
@@ -92,6 +96,8 @@ LOCAL_APPS = [
     "gojjo_realty.pages",
     "gojjo_realty.blogs",
     "gojjo_realty.contacts",
+    "gojjo_realty.leads",
+    "gojjo_realty.calculators",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -148,6 +154,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "allauth.account.middleware.AccountMiddleware",
+    "defender.middleware.FailedLoginMiddleware",
 ]
 
 # STATIC
@@ -351,10 +358,6 @@ SPECTACULAR_SETTINGS = {
 # Your stuff...
 # ------------------------------------------------------------------------------
 
-# CKEditor
-CKEDITOR_UPLOAD_PATH = "ckuploads/"
-CKEDITOR_FILENAME_GENERATOR = 'gojjo_realty.blog.utils.get_filename'
-
 # # Recaptcha
 # RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
 # RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
@@ -362,3 +365,6 @@ CKEDITOR_FILENAME_GENERATOR = 'gojjo_realty.blog.utils.get_filename'
 
 # OpenAI API
 OPENAI_API_KEY = env("OPENAI_API_KEY", default=None)
+
+# Django TinyMCE
+TINYMCE_SPELLCHECKER = True

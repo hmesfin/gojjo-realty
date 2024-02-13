@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 
 
-from gojjo_realty.contacts.choices import (
+from gojjo_realty.utils.choices import (
     ADDRESS_TYPE_CHOICES,
     )
 

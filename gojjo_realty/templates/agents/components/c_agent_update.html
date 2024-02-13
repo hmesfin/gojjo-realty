@@ -1,0 +1,16 @@
+{% load static i18n %}
+{% load crispy_forms_tags %}
+
+
+<div class="container my-4">
+    <div class="row gy-3">
+        <div class="col-md-12">
+            <h3>{% translate 'Update Profile' %}</h3>
+            <form method="post">
+                {% csrf_token %}
+                {% crispy form %}
+                <button type="submit" class="btn btn-primary">{% translate 'Update profile' %}</button>
+            </form>
+        </div>
+    </div>
+</div>

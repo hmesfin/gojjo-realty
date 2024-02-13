@@ -406,6 +406,21 @@
       line-height: 0;
       margin-left: 5px;
     }
+
+    .alert-dismissible {
+      padding-right: 2.5rem;
+      padding-left: 2.5rem;
+      border-radius: 0.25rem;
+      margin-top: 0.25rem;
+      margin-bottom: 0.25rem;
+      position: relative;
+      padding: 0.75rem 1.25rem;
+      margin-bottom: 1rem;
+      border: 1px solid transparent;
+      border-radius: 0.25rem;
+      color: #0c5460;
+      z-index: 9999;
+    }
   
     .navbar>ul>li>a:before {
       content: "";

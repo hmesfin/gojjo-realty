@@ -6,9 +6,9 @@ from django.utils.text import slugify
 from gojjo_realty.users.models import User
 from django.utils.translation import gettext_lazy as _
 
-from ckeditor.fields import RichTextField
+from tinymce.models import HTMLField
 
-from gojjo_realty.agents.choices import (
+from gojjo_realty.utils.choices import (
     SOCIAL_ACCOUNT_CHOICES,
     STATE_CHOICES,
     LICENSE_TYPE_CHOICES,
@@ -30,7 +30,7 @@ class BaseAgentModel(models.Model):
 class AgentPage(BaseAgentModel):
     title = models.CharField(_("Title"), max_length=255, blank=True)
     slug = models.SlugField(_("Slug"), max_length=255, blank=True)
-    content = RichTextField(_("Content"), blank=True)
+    text = HTMLField(_("Text"), blank=True)
     is_published = models.BooleanField(_("Publish"), default=True)
 
     class Meta:
@@ -111,11 +111,14 @@ class Agent(BaseAgentModel):
     last_name = models.CharField(_("Last Name"), max_length=255, blank=True)
     slug = models.SlugField(_("Slug"), max_length=255, blank=True) 
     phone = PhoneNumberField(_("Phone Number"), blank=True)
+    alternate_phone = PhoneNumberField(_("Alternate Phone Number"), blank=True)
+    alternate_email = models.EmailField(_("Alternate Email"), max_length=255, blank=True)
+    use_alt_email = models.BooleanField(_("Use Alternate Email"), default=False)
     role = models.CharField(_("Role"), max_length=255, blank=True, choices=ROLE_CHOICES)
     agent_photo = models.ImageField(_("Profile Photo"), upload_to='agent_photos', blank=True)
     gender = models.CharField(_("Gender"), max_length=255, blank=True, choices=GENDER_CHOICES)
     gender_id = models.CharField(_("Gender ID"), max_length=255, blank=True, choices=GENDER_ID_CHOICES)
-    agent_bio = RichTextField(_("Bio"), blank=True)
+    bio = HTMLField(_("Bio"), blank=True)
     agent_short_bio = models.TextField(_("Short Bio"), max_length=255, blank=True)
     social_accounts = models.ManyToManyField(SocialAccount, blank=True, related_name='agent_social_accounts', verbose_name=_("Social Accounts"))
     licenses = models.ManyToManyField(License, blank=True, related_name='agent_licenses', verbose_name=_("Licenses"))
@@ -137,7 +140,7 @@ class Agent(BaseAgentModel):
         return f'{self.first_name} {self.last_name}'
     
     def get_absolute_url(self):
-        return reverse("agents:agent_detail", kwargs={"pk": self.pk})
+        return reverse("agents:agent_detail", kwargs={"slug": self.slug})
     
     def save(self, *args, **kwargs):
     # Update the slug field before saving the model for the first time.

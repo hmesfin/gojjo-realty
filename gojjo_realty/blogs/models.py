@@ -8,7 +8,7 @@ from django.utils.text import slugify
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
-from ckeditor.fields import RichTextField
+from tinymce.models import HTMLField
 
 # from gojjo_realty.utils.openapi import generate_summary
 
@@ -82,8 +82,8 @@ class Post(BaseBlogClass):
     subtitle = models.CharField(_('subtitle'), max_length=255, blank=True, null=True)
     slug = models.SlugField(_('slug'), max_length=255, unique=True)
     image = models.ImageField(_('header image'), blank=True, null=True, upload_to='blog/uploads/')
-    text = RichTextField(_('text'))
-    tldr = RichTextField(_('TL;DR'), blank=True, null=True)
+    content = HTMLField(_('content'), blank=True, null=True)
+    tldr = HTMLField(_('TL;DR'), blank=True, null=True)
     view_count = models.IntegerField(_('view count'), default=0)
     published = models.BooleanField(_('published'), default=False)
 
