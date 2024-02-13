@@ -33,7 +33,7 @@ class HomePageView(TemplateView):
         context = super(HomePageView, self).get_context_data(**kwargs)
         context['home_page'] = HomePage.objects.filter(type="primary").first()
         context['about_page'] = AboutPage.objects.filter(type="primary").first()
-        context['agents'] = Agent.objects.filter(is_published=True)
+        # context['agents'] = Agent.objects.filter(is_published=True)
         context['agent_page'] = AgentPage.objects.filter(is_published=True).first()
         context['services'] = Service.objects.filter(is_published=True).order_by('created_date')[:3]
         context['call_to_action'] = CallToAction.objects.filter(type="primary").first()
