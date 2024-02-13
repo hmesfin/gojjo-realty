@@ -28,7 +28,7 @@ django-components==0.34.1 # https://github.com/EmilStenstrom/django-components
 django-recaptcha==4.0.0 # https://github.com/django-recaptcha/django-recaptcha
 openai==1.11.1 # https://github.com/openai/openai-python
 sorl-thumbnail==12.10.0 # https://github.com/jazzband/sorl-thumbnail
-django-defender==0.9.7 # https://github.com/kencochrane/django-defender
+# django-defender==0.9.7 # https://github.com/kencochrane/django-defender
 # django-two-factor-auth==1.16.0 # https://github.com/Bouke/django-two-factor-auth
 django-cookie-consent==0.4.0 # https://github.com/jazzband/django-cookie-consent
 # django-newsletter==0.9.1 # https://github.com/jazzband/django-newsletter

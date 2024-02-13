@@ -3,18 +3,14 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from django.views import defaults as default_views
-from django.views.generic import TemplateView
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
     # path('admin/defender/', include('defender.urls')), # defender admin
-    path('admin/', admin.site.urls), # normal admin
     path("", include("gojjo_realty.pages.urls", namespace="pages")),
     path("blogs/", include("gojjo_realty.blogs.urls", namespace="blogs")),
     path("agents/", include("gojjo_realty.agents.urls", namespace="agents")),
-    # Django Admin, use {% url 'admin:index' %}
-    path(settings.ADMIN_URL, admin.site.urls),
     # User management
     path("users/", include("gojjo_realty.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
@@ -23,6 +19,16 @@ urlpatterns = [
     path("invitations/", include('invitations.urls', namespace='invitations')),
     path("cookies/", include("cookie_consent.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += [
+        path("admin/", admin.site.urls),
+    ]
+else:
+    urlpatterns += [
+    # Django Admin, use {% url 'admin:index' %}
+    path(settings.ADMIN_URL, admin.site.urls),
+    ]
 
 # API URLS
 urlpatterns += [

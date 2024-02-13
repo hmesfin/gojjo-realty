@@ -154,7 +154,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "allauth.account.middleware.AccountMiddleware",
-    "defender.middleware.FailedLoginMiddleware",
 ]
 
 # STATIC
