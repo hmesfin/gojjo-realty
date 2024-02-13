@@ -17,7 +17,7 @@
         </div>
 
         <div class="col-lg-7">
-          <h3 class="pt-0 pt-lg-5">{{ about_page.header_text|safe }}</h3>
+          <h3 class="pt-0 pt-lg-5">{% if about_page.header_text %}{{ about_page.header_text|safe }} {% else %} About Us {% endif %}</h3>
 
           <!-- Tabs -->
           <ul class="nav nav-pills mb-3">

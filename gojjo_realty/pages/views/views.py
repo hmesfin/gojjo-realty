@@ -57,7 +57,7 @@ class AboutPageView(TemplateView):
         context['call_to_action'] = CallToAction.objects.filter(type="secondary").first()
         context['agents'] = Agent.objects.filter(is_published=True).order_by('created_date')[:3]
         context['testimonials'] = Testimonial.objects.filter(is_published=True).order_by('-created_date')
-        # context['posts'] = Post.objects.filter(published=True).order_by('-created_date')[:3]
+        context['blogs'] = Post.objects.filter(published=True).order_by('-created_date')[:3]
         context['page_title'] = "About Us"
         return context
 
