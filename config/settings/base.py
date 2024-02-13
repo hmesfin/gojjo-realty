@@ -85,7 +85,7 @@ THIRD_PARTY_APPS = [
     "phonenumbers",
     "django_recaptcha",
     "sorl.thumbnail",
-    "defender",
+    # "defender",
     "invitations",
     "cookie_consent",
 ]

@@ -8,7 +8,7 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
-    path('admin/defender/', include('defender.urls')), # defender admin
+    # path('admin/defender/', include('defender.urls')), # defender admin
     path('admin/', admin.site.urls), # normal admin
     path("", include("gojjo_realty.pages.urls", namespace="pages")),
     path("blogs/", include("gojjo_realty.blogs.urls", namespace="blogs")),
