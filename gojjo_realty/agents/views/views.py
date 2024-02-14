@@ -71,22 +71,18 @@ class AgentDetailView(DetailView):
 class MyLinksView(TemplateView):
     model = Agent
     template_name = 'agents/my_links.html'
-
-    def get(self, request, *args, **kwargs):
-        agent = get_object_or_404(Agent, slug=kwargs['slug'])
-        if agent.user == self.request.user:
-            return super().get(request, *args, **kwargs)
-        else:
-            return redirect('agents:agent_list')
+    context_object_name = 'agent'
+    slug_field ='slug'
+    slug_url_kwarg = 'slug'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['licenses'] = License.objects.filter(licensee=self.object)
-        context['social_accounts'] = SocialAccount.objects.filter(agent=self.object)
-        context['addresses'] = Address.objects.filter(agent=self.object)
-        context['page_title'] = "Our Agents"
+        agent_slug = self.kwargs.get('slug')
+        context['agent'] = Agent.objects.get(slug=agent_slug)
+        context['social_accounts'] = SocialAccount.objects.filter(agent=context['agent'])
+        context['page_title'] = "My Links"
         context['page_subtitle'] = "Realtor Extraordinaire"
-        context['detail_page_title'] = self.object.get_full_name()
+        context['detail_page_title'] = context['agent'].get_full_name()
         return context
 
 

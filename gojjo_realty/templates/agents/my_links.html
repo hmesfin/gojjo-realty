@@ -1,33 +1,106 @@
 {% load static i18n %}
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>My Links</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <header>
-            <div class="share-button">
-            </div>
-        </header>
-        <div class="container">
-            <div class="image-container">
-                <img src="{% if agent.image %}{{ agent.image.url }}{% else %}{% static 'images/defaults/default_person.png' %} {% endif %}" alt="{{ agent.get_full_name }} Avatar">
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <h1>My Links</h1>
-                    <ul>
-                        <li><a href="https://www.google.com">Google</a></li>
-                        <li><a href="https://www.facebook.com">Facebook</a></li>
-                        <li><a href="https://www.twitter.com">Twitter</a></li>
-                    </ul>
-                </div>
-            </div>
-    </body>
+<html lang="{{ LANGUAGE_CODE }}" data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>
+      {% block title %}
+      {% endblock title %}
+      | {{ site_info.name }}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Gojjo Realty Django web application" />
+    <meta name="author"
+          content="Hamel Mesfin" />
+    <link rel="icon" type="image/png" href="{% if site_info.favicon %} 
+    {{ site_info.favicon.url }} 
+    {% else %}
+    {% static 'images/favicons/favicon.ico' %}
+    {% endif %}" />
+    {% block css %}
+      <!-- Latest compiled and minified Bootstrap CSS -->
+      <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" />
+    <!-- Your stuff: Third-party CSS libraries go here -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+    <!-- Variables CSS Files. Uncomment your preferred color scheme -->
+    <link href="{% static 'css/variables.css' %}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+
+    <!-- This file stores project-specific CSS -->
+
+
+
+    {% endblock css %}
+    <!-- Le javascript
+        ================================================== -->
+    {# Placed at the top of the document so pages load faster with defer #}
+    {% block javascript %}
+
+
+    <!-- Bootstrap JS -->
+
+    <!-- Your stuff: Third-party javascript libraries go here -->
+
+    <script src="{% static 'js/main.js' %}"></script>
+    <!-- place project specific Javascript in this file -->
+
+    
+    <script defer src="{% static 'js/main.js' %}"></script>
+
+
+    {% endblock javascript %}
+  </head>
+<body>
+<div class="container my-links-card-container">
+    <div class="card-header">
+    <img src="{% if agent.agent_photo %}
+    {{ agent.agent_photo.url }}
+    {% else %}
+    {% static 'images/defaults/default_person.png' %} 
+    {% endif %}" class="card-img" alt="{{ agent.get_full_name }}'s profile image">
+    <div class="card-body">
+      <h3 class="card-title">{{agent.first_name }}<span>{{ agent.last_name }}</span></h3>
+      <h4 class="card-subtitle">{{ agent.get_role_display }} | REALTOR<sup>®</sup></h4>
+      <hr>
+      <div class="agent-socials">
+        {% for account in agent.agent_social_account.all %}
+        {% if account.name == "facebook" %}
+            <a href="{{ account.url }}" class="btn btn-primary"><i class="bi bi-facebook"></i> {{ account.get_name_display }}</a>
+        {% endif %} 
+        {% if account.name == "twitter" %}
+            <a href="{{ account.url }}" class="btn btn-primary "><i class="bi bi-twitter-x"></i> {{ account.get_name_display }}</a>
+        {% endif %}
+        {% if account.name == "instagram" %}
+            <a href="{{ account.url }}" class="btn btn-primary "><i class="bi bi-instagram"></i> {{ account.get_name_display }}</a>
+        {% endif %}
+        {% if account.name == "linkedin" %}
+            <a href="{{ account.url }}" class="btn btn-primary "><i class="bi bi-linkedin"></i> {{ account.get_name_display }}</a>
+        {% endif %}
+        {% if account.name == "youtube" %}
+            <a href="{{ account.url }}" class="btn btn-primary "><i class="bi bi-youtube"></i> {{ account.get_name_display }}</a>
+        {% endif %}
+        {% if account.name == "pinterest" %}
+            <a href="{{ account.url }}" class="btn btn-primary "><i class="bi bi-pinterest"></i> {{ account.get_name_display }}</a>
+        {% endif %}
+        {% if account.name == "tiktok" %}
+            <a href="{{ account.url }}" class="btn btn-primary "><i class="bi bi-tiktok"></i> {{ account.get_name_display }}</a>
+        {% endif %}
+        {% if account.name == "snapchat" %}
+            <a href="{{ account.url }}" class="btn btn-primary "><i class="bi bi-snapchat"></i> {{ account.get_name_display }}</a>
+        {% endif %}
+        {% endfor %}
+    </div>
+    </div>
+  </div>
+</div>
+</body>
 </html>
