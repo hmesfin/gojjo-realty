@@ -22,7 +22,7 @@
               </ul>
             </div><!-- End meta top -->
 
-            <div class="tldr mt-4 mb-4">
+            {% comment %} <div class="tldr mt-4 mb-4">
               <h2 class="title m-4">TL;DR</h2>
               <div class="post-tldr d-flex align-items-center">
                 <i class="bi bi-file-earmark-text"></i>
@@ -30,7 +30,7 @@
                   {{ blog.tldr_2|safe }}
                 </p>
               </div>
-            </div><!-- End post tldr -->
+            </div><!-- End post tldr --> {% endcomment %}
 
             <div class="content">
               <p>
@@ -45,12 +45,12 @@
                 <li><a href="#">{{ blog.category }}</a></li>
               </ul>
 
-              <i class="bi bi-tags"></i>
+              {% comment %} <i class="bi bi-tags"></i>
               <ul class="tags">
-                {% for tag in tags.array_field %}
+                {% for tag in tags.array_field %} 
                 <li>{{ tag|capfirst }}</li>
                 {% endfor %}
-              </ul>
+              </ul> {% endcomment %}
             </div><!-- End meta bottom -->
 
           </article><!-- End blog post -->
@@ -248,7 +248,7 @@
               </div>
 
             </div><!-- End sidebar recent posts-->
-
+{% comment %} 
             <div class="sidebar-item tags">
               <h3 class="sidebar-title">{% trans "Tags" %}</h3>
               <ul class="mt-3">
@@ -264,7 +264,7 @@
                 <li><a href="#">Tips</a></li>
                 <li><a href="#">Marketing</a></li>
               </ul>
-            </div><!-- End sidebar tags-->
+            </div><!-- End sidebar tags--> {% endcomment %}
 
           </div><!-- End Blog Sidebar -->
 

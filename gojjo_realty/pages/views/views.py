@@ -37,7 +37,7 @@ class HomePageView(TemplateView):
         context['agent_page'] = AgentPage.objects.filter(is_published=True).first()
         context['services'] = Service.objects.filter(is_published=True).order_by('created_date')[:3]
         context['call_to_action'] = CallToAction.objects.filter(type="primary").first()
-        context['faqs'] = FAQ.objects.filter(is_published=True, category=1).order_by('created_date')[:5]
+        context['faqs'] = FAQ.objects.filter(is_published=True).order_by('?')[:5]
         context['agents'] = Agent.objects.filter(is_published=True).order_by('created_date')[:3]
         context['blogs'] = Post.objects.filter(published=True).order_by('-created_date')[:3]
         context['testimonials'] = Testimonial.objects.filter(is_published=True).order_by('-created_date')
