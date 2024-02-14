@@ -1,7 +1,7 @@
 {% load static i18n %}
 {% load crispy_forms_tags %} 
 
-<div class="modal fade" id="modalContactFrom" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+<div class="modal fade m-4" id="modalContactFrom" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content p-4">
         <div class="modal-header">
@@ -10,6 +10,11 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+        {% if messages %}
+        <div class="alert alert-{{ messages.tags }}">
+         {{ message }}
+        </div>
+        {% endif %}
         <div class="modal-body">
             <form method="POST">
                 {% csrf_token %}

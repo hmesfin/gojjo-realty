@@ -17,11 +17,11 @@ from gojjo_realty.agents.models import Agent
 
 
 class ContactMessageForm(forms.ModelForm):
-    captcha = ReCaptchaField()
+    # captcha = ReCaptchaField()
 
     class Meta:
         model = ContactMessage
-        fields = ['first_name', 'last_name', 'email', 'phone', 'subject', 'message', 'captcha']
+        fields = ['first_name', 'last_name', 'email', 'phone', 'subject', 'message', ]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -52,7 +52,7 @@ class ContactMessageForm(forms.ModelForm):
             ),
             FloatingField('subject', css_class='form-group'),
             FloatingField('message', css_class='form-group'),
-            'captcha',
+            # 'captcha',
             FormActions(
                 Submit('submit', 'Submit', css_class='btn btn-primary')
             )

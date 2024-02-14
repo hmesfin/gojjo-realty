@@ -4294,7 +4294,7 @@
 }
 
 .my-links-card-container  .card-img {
-  max-width: 180px;
+  width: 180px;
   border-radius: 50%;
   margin-bottom: 20px;
   justify-content: center;
@@ -4302,6 +4302,8 @@
 
 .my-links-card-container .card-title {
   font-size: 36px;
+  width: 100%;
+  text-align: center;
   font-weight: 600;
   color: var(--color-primary);
   text-transform: capitalize;

@@ -5,7 +5,7 @@
       <h2>{{ home_page.hero_title }} <span>{{ home_page.hero_subtitle }}</span></h2>
       <p>{{ home_page.hero_text }}</p>
       <div class="d-flex">
-        <button type="button" class="btn btn-primary" id="toggleButton" data-bs-toggle="modal" data-bs-target="#modalContactFrom">{% trans "Get Started" %}</button>
+        <a  class="btn btn-primary" href="{% url 'pages:contact' %}">{% trans "Get Started" %}</button>
         <a href="{{home_page.hero_video_url}}" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>{% trans "Watch Video" %}</span></a>
       </div>
     </div>
