@@ -1,0 +1,54 @@
+{% load static i18n %}
+
+{% load static i18n  %}
+
+<section id="recent-blog-posts" class="recent-blog-posts">
+
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-header">
+        <h2>{{ page_title }}</h2>
+        <h4>{{ page_subtitle }}</h4>
+        <br>
+        <p>{{ meta.description }}</p>
+      </div>
+
+      <div class="row">
+        {% for event in events_list %}
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="post-box">
+            <div class="post-img"><img src="
+                {% if event.featured_image %}
+                    {{ event.featured_image.url }}
+                {% else %}
+                    {% static 'images/defaults/default_blog.png' %}
+                {% endif %}" 
+                class="img-fluid" alt=""></div>
+            <div class="meta">
+               <span class="color-secondary"> {% trans 'When' %}: </span>
+              <span class="post-author">{{ event.date|date:"DATE_FORMAT" }}</span>
+              <span class="post-author"> @ {{ event.start_time|time:"TIME_FORMAT" }}</span>
+            </div>
+            <div class="meta">
+                <span class="color-secondary"> {% trans 'Where' %}: </span>
+                <span class="post-date">{{ event.get_venue_name }}</span>
+            </div>
+            <div class="meta">
+                <span class="color-secondary"> {% trans 'What' %}: </span>
+                <span class="post-author">{{ event.get_type_display }}</span>
+            </div>
+            <div class="meta">
+                <span class="color-secondary"> {% trans 'Organizer' %}: </span>
+                <span class="post-author">{{ event.agent.get_full_name }}</span>
+            </div>
+            <h3 class="post-title">{{event.title }}</h3>
+            <p>{{ event.content|safe|truncatewords:30}}</p>
+            <a href="{% url 'events:event_detail' slug=event.slug %}" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+
+  </section>

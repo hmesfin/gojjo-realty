@@ -11,6 +11,7 @@ urlpatterns = [
     path("", include("gojjo_realty.pages.urls", namespace="pages")),
     path("blogs/", include("gojjo_realty.blogs.urls", namespace="blogs")),
     path("agents/", include("gojjo_realty.agents.urls", namespace="agents")),
+    path("events/", include("gojjo_realty.landingpages.urls", namespace="landingpages")),
     # User management
     path("users/", include("gojjo_realty.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),

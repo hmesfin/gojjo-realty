@@ -99,6 +99,7 @@ LOCAL_APPS = [
     "gojjo_realty.contacts",
     "gojjo_realty.leads",
     "gojjo_realty.calculators",
+    "gojjo_realty.landingpages",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

@@ -1,0 +1,97 @@
+{% load static i18n  %}
+{% load crispy_forms_tags %}
+
+<section id="blog" class="blog">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row g-5">
+
+        <div class="col-lg-8">
+
+          <article class="blog-details">
+
+            <div class="post-img">
+              <img src="{% if event.featured_image %}{{ event.featured_image.url }}{% else %}{% static 'images/defaults/default_blog.png' %}{% endif %}" alt="Event featured image" class="img-fluid">
+            </div>
+
+            <h2 class="title">{{ event.title }}</h2>
+
+            <div class="meta-top">
+              <ul>
+                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">{{ event.agent.get_full_name }}</a></li>
+                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2020-01-01">{{ event.date|date:'F d, Y'}}</time></a></li>
+                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2020-01-01">{{ event.date|date:'F d, Y'}}</time></a></li>
+                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2020-01-01">{{ event.date|date:'F d, Y'}}</time></a></li>
+              </ul>
+            </div><!-- End meta top -->
+
+            <div class="content">
+              <p>
+                {{ event.content }}
+              </p>
+
+            </div><!-- End post content -->
+
+            <div class="meta-bottom">
+              <i class="bi bi-folder"></i>
+              <ul class="cats">
+                <li><a href="#">{{ event.get_venue_name }}</a></li>
+              </ul>
+            </div><!-- End meta bottom -->
+
+          </article><!-- End blog post -->
+
+          <div class="post-author d-flex align-items-center">
+            <img src="{% if event.agent.agent_photo %}{{ event.agent.agent_photo.url }}{% else %}{% static 'images/defaults/default_person.png' %}{% endif %}" class="rounded-circle flex-shrink-0" alt="">
+            <div>
+              <h4>{{ event.agent.get_full_name }}</h4>
+              <div class="social-links">
+                {% for account in event.agent.agent_social_account.all %}
+                {% if account.name == 'facebook' %}
+                <a href="{{ account.url }}"><i class="bi bi-facebook"></i></a>
+                {% elif account.name == 'twitter' %}
+                <a href="{{ account.url }}"><i class="bi bi-twitter-x"></i></a>
+                {% elif account.name == 'instagram' %}
+                <a href="{{ account.url }}"><i class="bi bi-instagram"></i></a>
+                {% elif account.name == 'linkedin' %}
+                <a href="{{ account.url }}"><i class="bi bi-linkedin"></i></a>
+                {% elif account.name == 'youtube' %}
+                <a href="{{ account.url }}"><i class="bi bi-youtube"></i></a>
+                {% elif account.name == 'tiktok' %}
+                <a href="{{ account.url }}"><i class="bi bi-tiktok"></i></a>
+                {% endif %}
+                {% endfor %}
+              </div>
+              <p>
+                {{ event.agent.agent_short_bio }}
+              </p>
+            </div>
+          </div><!-- End post author -->
+
+        </div>
+
+        <div class="col-lg-4">
+
+          <div class="sidebar">
+
+            <div class="sidebar-item search-form">
+              <h3 class="sidebar-title">{% trans "Attending this "%}{{ event.get_type_display }}</h3>
+              <form action="" class="mt-3">
+                <div class="row g-3">
+                  <div class="col-md-12">
+                    {{ attending_form|crispy }}
+                  </div>
+                  <div class="col-md-12">
+                    <button type="submit"><i class="bi bi-send-check-fill">{% trans "Submit"%}</i></button>
+                  </div>
+                </div>
+              </form>
+            </div><!-- End sidebar search formn-->
+
+          </div><!-- End Blog Sidebar -->
+
+        </div>
+      </div>
+
+    </div>
+  </section>

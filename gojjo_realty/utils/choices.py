@@ -243,3 +243,39 @@ USER_EMAIL_TYPE_CHOICES = (
     ('password_reset', _('Password Reset')),
     ('other', _('Other')),
 )
+
+USER_EMAIL_STATUS_CHOICES = (
+    ('pending', _('Pending')),
+    ('sent', _('Sent')),
+    ('failed', _('Failed')),
+    ('other', _('Other')),
+)
+
+USER_EMAIL_TEMPLATE_CHOICES = (
+    ('html', _('HTML')),
+    ('text', _('Text')),
+    ('other', _('Other')),
+)
+
+EVENT_TYPE_CHOICES = (
+    ('open_house', _('Open House')),
+    ('workshop', _('Workshop')),
+    ('trade_show', _('Trade Show')),
+    ('showing', _('Showing')),
+    ('meeting', _('Meeting')),
+    ('other', _('Other')),
+)
+
+EVENT_STATUS_CHOICES = (
+    ('draft', _('Draft')),
+    ('published', _('Published')),
+    ('cancelled', _('Cancelled')),
+    ('other', _('Other')),
+)
+
+EVENT_ATTENDANCE_CHOICES = (
+    ('yes', _('Yes')),
+    ('no', _('No')),
+    ('maybe', _('Maybe')),
+    ('other', _('Other')),
+)
