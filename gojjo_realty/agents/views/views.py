@@ -1,13 +1,14 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, UpdateView, TemplateView, CreateView
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.shortcuts import HttpResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 
 from gojjo_realty.agents.models import Agent, License, SocialAccount, Address, AgentPage
+
+from gojjo_realty.pages.models import Links
 
 from gojjo_realty.agents.forms.contact_agent import ContactAgentForm
 from gojjo_realty.agents.forms.agent_form import AgentForm
@@ -23,6 +24,7 @@ class AgentListView(ListView):
         context = super().get_context_data(**kwargs)
         context['agents'] = Agent.objects.filter(is_published=True)
         context['agent_page'] = AgentPage.objects.filter(is_published=True).first()
+        context['lenders'] = Links.objects.filter(is_published=True, link_type="lenders").order_by('created_date')[:3]
         context['page_title'] = 'Our Agents'
         context['page_subtitle'] = 'Find the best agent for you'
         return context
@@ -43,6 +45,7 @@ class AgentDetailView(DetailView):
         context['licenses'] = License.objects.filter(licensee=self.object)
         context['social_accounts'] = SocialAccount.objects.filter(agent=self.object)
         context['address'] = Address.objects.filter(agent=self.object).first()
+        context['lenders'] = Links.objects.filter(is_published=True, link_type="lenders").order_by('created_date')[:3]
         context['page_title'] = "Our Agents"
         context['list_view_url'] = reverse_lazy('agents:agent_list')
         context['page_subtitle'] = "Realtor Extraordinaire"
@@ -80,6 +83,7 @@ class MyLinksView(TemplateView):
         agent_slug = self.kwargs.get('slug')
         context['agent'] = Agent.objects.get(slug=agent_slug)
         context['social_accounts'] = SocialAccount.objects.filter(agent=context['agent'])
+        context['lenders'] = Links.objects.filter(is_published=True, link_type="lenders").order_by('created_date')[:3]
         context['page_title'] = "My Links"
         context['page_subtitle'] = "Realtor Extraordinaire"
         context['detail_page_title'] = context['agent'].get_full_name()

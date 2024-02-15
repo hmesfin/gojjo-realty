@@ -200,6 +200,7 @@ CONTACT_PREFERRED_CONTACT_METHOD_CHOICES = (
 
 LINK_CATEGORY_CHOICES = (
     ('affiliates', _('Affiliates')),
+    ('lenders', _('Lenders')),
     ('footer', _('Footer')),
     ('support', _('Support')),
     ('other', _('Other')),

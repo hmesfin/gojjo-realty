@@ -18,6 +18,7 @@ from gojjo_realty.pages.models import (
     FAQCategory,
     Legal,
     ServicesPage,
+    Links
     )
 from gojjo_realty.pages.forms.contact_message_form import ContactMessageForm
 from gojjo_realty.agents.models import Agent, AgentPage
@@ -38,6 +39,7 @@ class HomePageView(TemplateView):
         context['services'] = Service.objects.filter(is_published=True).order_by('created_date')[:3]
         context['call_to_action'] = CallToAction.objects.filter(type="primary").first()
         context['faqs'] = FAQ.objects.filter(is_published=True).order_by('?')[:5]
+        context['lenders'] = Links.objects.filter(is_published=True, link_type="lenders").order_by('created_date')[:3]
         context['agents'] = Agent.objects.filter(is_published=True).order_by('created_date')[:3]
         context['blogs'] = Post.objects.filter(published=True).order_by('-created_date')[:3]
         context['testimonials'] = Testimonial.objects.filter(is_published=True).order_by('-created_date')
@@ -57,6 +59,7 @@ class AboutPageView(TemplateView):
         context['call_to_action'] = CallToAction.objects.filter(type="secondary").first()
         context['agents'] = Agent.objects.filter(is_published=True).order_by('created_date')[:3]
         context['testimonials'] = Testimonial.objects.filter(is_published=True).order_by('-created_date')
+        context['lenders'] = Links.objects.filter(is_published=True, link_type="lenders").order_by('created_date')[:3]
         context['blogs'] = Post.objects.filter(published=True).order_by('-created_date')[:3]
         context['page_title'] = "About Us"
         return context
@@ -75,6 +78,7 @@ class ContactPageView(SuccessMessageMixin, TemplateView, FormView):
         if 'contact_form' not in context:
             context['contact_form'] = ContactMessageForm(self.request.POST or None)
         context['call_to_action'] = CallToAction.objects.filter(type="secondary").first()
+        context['lenders'] = Links.objects.filter(is_published=True, link_type="lenders").order_by('created_date')[:3]
         context['page_title'] = "Contact Us"
         return context
     
@@ -128,6 +132,7 @@ class ServicesListPageView(ListView):
         context['services'] = Service.objects.filter(is_published=True).order_by('created_date')
         context['service_page'] = ServicesPage.objects.filter(type="primary").first()
         context['call_to_action'] = CallToAction.objects.filter(is_published=True).first()
+        context['lenders'] = Links.objects.filter(is_published=True, link_type="lenders").order_by('created_date')[:3]
         context['page_title'] = "Our Services"
         return context
     
@@ -146,6 +151,7 @@ class ServiesDetailPageView(DetailView):
         context['call_to_action'] = CallToAction.objects.filter(is_published=True).first()
         context['page_title'] = "Our Services"
         context['list_view_url'] = reverse_lazy('pages:services')
+        context['lenders'] = Links.objects.filter(is_published=True, link_type="lenders").order_by('created_date')[:3]
         context['detail_page_title'] = self.object.name
         return context
 
@@ -167,6 +173,7 @@ class TermsPageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(TermsPageView, self).get_context_data(**kwargs)
         context['terms'] = Legal.objects.filter(document_type="tos").first()
+        context['lenders'] = Links.objects.filter(is_published=True, link_type="lenders").order_by('created_date')[:3]
         context['page_title'] =  "Terms of Use"
         return context
     
@@ -176,5 +183,6 @@ class PrivacyPageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(PrivacyPageView, self).get_context_data(**kwargs)
         context['privacy'] = Legal.objects.filter(document_type="privacy").first()
+        context['lenders'] = Links.objects.filter(is_published=True, link_type="lenders").order_by('created_date')[:3]
         context['page_title'] =  "Privacy Policy"
         return context

@@ -1,5 +1,6 @@
 from django.views.generic import ListView, DetailView
 from gojjo_realty.blogs.models import Post, Category, BlogMeta
+from gojjo_realty.pages.models import Links
 from django.shortcuts import get_object_or_404
 from django.db.models import Count
 from django.urls import reverse_lazy
@@ -15,6 +16,7 @@ class PostListView(ListView):
         context = super(PostListView, self).get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
         context['meta'] = BlogMeta.objects.all().first()
+        context['lenders'] = Links.objects.filter(is_published=True, link_type="lenders").order_by('created_date')[:3]
         context['blog_title'] = 'Blogs List'
         return context
 
@@ -31,6 +33,7 @@ class PostDetailView(DetailView):
         context['categories'] = Category.objects.all()
         context['recent_posts'] = Post.objects.published().order_by('-pub_date')[:3]
         context['category_count'] = Category.objects.annotate(post_count=Count('post_set')).order_by('-post_count')
+        context['lenders'] = Links.objects.filter(is_published=True, link_type="lenders").order_by('created_date')[:3]
         context['meta'] = BlogMeta.objects.all().first()
         context['page_title'] = "Blogs List"
         context['list_view_url'] = reverse_lazy('blogs:blog_list')
