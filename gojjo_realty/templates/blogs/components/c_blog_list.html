@@ -23,7 +23,7 @@
                 {% endif %}" 
                 class="img-fluid" alt=""></div>
             <div class="meta">
-              <span class="post-date">{{ blog.created_date|date:"DATE_FORMAT" }}</span>
+              <span class="post-date">{{ blog.pub_date|date:"DATE_FORMAT" }}</span>
               <span class="post-author"> /  {{ blog.author.get_full_name }}</span>
             </div>
             <h3 class="post-title">{{blog.title }}</h3>

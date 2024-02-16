@@ -45,6 +45,7 @@ class SiteInfo(BasePagesModel):
     short_name = models.CharField(_('short name'), max_length=255, blank=True)
     type = models.CharField(_('type'), max_length=255, choices=PAGE_TYPE_CHOICES)
     tagline = models.CharField(_('tagline'), max_length=255)
+    site_description = models.TextField(_('site description'), blank=True, null=True)
     logo = models.ImageField(_('logo'), upload_to='site/uploads/')
     dark_logo = models.ImageField(_('dark logo'), upload_to='site/uploads/', blank=True, null=True)
     admin_logo = models.ImageField(_('admin logo'), upload_to='site/uploads/', blank=True, null=True)

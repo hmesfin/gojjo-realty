@@ -50,7 +50,7 @@ class SiteInfoAdmin(admin.ModelAdmin):
     readonly_fields = ('created_date', 'modified_date')
     fieldsets = (
         (_('Site Info'), {
-            'fields': ('type', 'name', 'short_name', 'tagline', 'logo', 'dark_logo', 'admin_logo', 'favicon', 'admin_favicon')
+            'fields': ('type', 'name', 'short_name', 'tagline', 'site_description', 'logo', 'dark_logo', 'admin_logo', 'favicon', 'admin_favicon')
         }),
         (_('Date Information'), {
             'classes': ('collapse',),
