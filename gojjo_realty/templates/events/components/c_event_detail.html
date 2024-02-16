@@ -18,10 +18,10 @@
 
             <div class="meta-top">
               <ul>
-                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">{{ event.agent.get_full_name }}</a></li>
-                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2020-01-01">{{ event.date|date:'F d, Y'}}</time></a></li>
-                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2020-01-01">{{ event.date|date:'F d, Y'}}</time></a></li>
-                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2020-01-01">{{ event.date|date:'F d, Y'}}</time></a></li>
+                <li class="d-flex align-items-center"><i class="bi bi-person"></i>{{ event.agent.get_full_name }}</li>
+                <li class="d-flex align-items-center"><i class="bi bi-question-square"></i><time datetime="2020-01-01">{{ event.get_type_display }}</time></li>
+                <li class="d-flex align-items-center"><i class="bi bi-calendar-event"></i><time datetime="2020-01-01">{{ event.date|date:'F d, Y'}}</time></li>
+                <li class="d-flex align-items-center"><i class="bi bi-clock"></i><time datetime="2020-01-01">{{ event.start_time|time:'g:i'}} - {{ event.end_time|time:'g:i A'}}</time></li>
               </ul>
             </div><!-- End meta top -->
 
@@ -33,10 +33,20 @@
             </div><!-- End post content -->
 
             <div class="meta-bottom">
-              <i class="bi bi-folder"></i>
+              {% if event.online_event %}
+              <i class="bi bi-globe"></i>
               <ul class="cats">
-                <li><a href="#">{{ event.get_venue_name }}</a></li>
+                <li><a href="{{ event.event_link }}">Event Link</a></li>
               </ul>
+              {% else %}
+              <i class="bi bi-geo-alt"></i>
+              <ul class="cats">
+                <span>{{ event.venue.name }}</span>
+                <span>{{ event.venue.address }}</span>
+                <span>{{ event.venue.city }}</span>
+                <span>{{ event.venue.get_state_display}}</span>
+              </ul>
+              {% endif %}
             </div><!-- End meta bottom -->
 
           </article><!-- End blog post -->
@@ -74,15 +84,13 @@
 
           <div class="sidebar">
 
-            <div class="sidebar-item search-form">
-              <h3 class="sidebar-title">{% trans "Attending this "%}{{ event.get_type_display }}</h3>
-              <form action="" class="mt-3">
+            <div class="sidebar-item event-form">
+              <h3 class="sidebar-title">{% trans "Attending this "%}{{ event.get_type_display }}?</h3>
+              <form method="post" class="mt-3">
                 <div class="row g-3">
                   <div class="col-md-12">
-                    {{ attending_form|crispy }}
-                  </div>
-                  <div class="col-md-12">
-                    <button type="submit"><i class="bi bi-send-check-fill">{% trans "Submit"%}</i></button>
+                    {% csrf_token %}
+                    {% crispy attending_form %}
                   </div>
                 </div>
               </form>

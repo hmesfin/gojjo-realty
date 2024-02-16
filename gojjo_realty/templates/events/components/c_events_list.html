@@ -5,15 +5,17 @@
 <section id="recent-blog-posts" class="recent-blog-posts">
 
     <div class="container" data-aos="fade-up">
-
+      {% if events_list %}
       <div class="section-header">
         <h2>{{ page_title }}</h2>
         <h4>{{ page_subtitle }}</h4>
         <br>
         <p>{{ meta.description }}</p>
       </div>
+      {% endif %}
 
       <div class="row">
+        {% if events_list %}
         {% for event in events_list %}
         <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
           <div class="post-box">
@@ -47,6 +49,12 @@
           </div>
         </div>
         {% endfor %}
+        {% else %}
+        <div class="section-header" data-aos="fade-up" data-aos-delay="200">
+        <h2>{% trans "No Upcoming Events!"%}</h2>
+        <p>{% trans "We currently have no events scheduled. Please check back soon!"%}</p>
+        {% endif %}
+        </div>
       </div>
 
     </div>

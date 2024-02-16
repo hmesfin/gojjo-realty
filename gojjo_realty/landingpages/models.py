@@ -64,7 +64,7 @@ class Contact(TimeStampedModel):
 
 class LandingPage(TimeStampedModel):
     type = models.CharField(max_length=255, verbose_name=_('Type'), choices=EVENT_TYPE_CHOICES, blank=True, null=True)
-    title = models.CharField(max_length=255, verbose_name=_('Title'))
+    title = models.CharField(max_length=255, verbose_name=_('Title'), unique=True)
     slug = models.SlugField(unique=True, verbose_name=_('Slug'))
     content = models.TextField(verbose_name=_('Content'))
     featured_image = models.ImageField(upload_to='landingpages', verbose_name=_('Featured Image'), blank=True, null=True)
@@ -75,6 +75,8 @@ class LandingPage(TimeStampedModel):
     end_time = models.TimeField(verbose_name=_('End Time'), blank=True, null=True)
     contacts = models.ManyToManyField(Contact, blank=True, verbose_name=_('Contacts'), related_name='landing_pages')
     status = models.CharField(max_length=255, verbose_name=_('Status'), choices=EVENT_STATUS_CHOICES, default='draft')
+    online_event = models.BooleanField(default=False, verbose_name=_('Online Event'))
+    event_link = models.URLField(verbose_name=_('Event Link'), blank=True, null=True)
 
     class Meta:
         verbose_name = _('Event')

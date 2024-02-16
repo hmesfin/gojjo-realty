@@ -34,6 +34,11 @@
             </a>
             </li>
             <li>
+              <a class="nav-link scrollto {% if request.path == '/events/' %}active{% endif %}" href="{% url 'events:events_list' %}">
+                  {% trans "Events" %}
+              </a>
+              </li>
+            <li>
             <a class="nav-link scrollto {% if request.path == '/blogs/' %}active{% endif %}" href="{% url 'blogs:blog_list' %}">
               {% trans "Blog" %}
             </a>

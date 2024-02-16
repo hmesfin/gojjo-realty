@@ -33,7 +33,7 @@ class LandingPageAdmin(admin.ModelAdmin):
     inlines = [VenueInline, ContactInline]
     fieldsets = (
         (None, {
-            'fields': ('agent', 'type', 'title', 'featured_image', 'content', 'status'),
+            'fields': ('agent', 'type', 'title', 'featured_image', 'content', 'status', 'online_event', 'event_link'),
         }),
         ('When', {
             'fields': ('date', 'start_time', 'end_time'),

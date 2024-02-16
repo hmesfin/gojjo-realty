@@ -4,6 +4,7 @@ from django.contrib import messages
 from gojjo_realty.landingpages.forms import ContactForm
 
 from gojjo_realty.landingpages.models import LandingPage, Venue, Contact
+from django.utils import timezone
 
 class LandingPageListView(ListView):
     model = LandingPage
@@ -14,7 +15,7 @@ class LandingPageListView(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['events_list'] = LandingPage.objects.filter(status='published')
+        context['events_list'] = LandingPage.objects.filter(status='published', date__gte=timezone.now().date())
         context['venue'] = Venue.objects.all()
         context['page_title'] = 'Our Upcoming Events'
         context['page_subtitle'] = 'Find the best event for you'
@@ -22,33 +23,31 @@ class LandingPageListView(ListView):
 
 class LandingPageDetailView(DetailView, FormView):
     model = LandingPage
+    form_class = ContactForm
     template_name = 'events/event_detail.html'
     context_object_name = 'event'
-    slug_field ='slug'
-    slug_url_kwarg = 'slug'
-    form_class = ContactForm
-
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['attending_form'] = ContactForm()
-        context['page_title'] = 'Event'
+        # context['event'] = LandingPage.objects.get(slug=self.kwargs['slug'])
+        # context['venue'] = Venue.objects.all()
+        context['attending_form'] = ContactForm(initial={'event': self.kwargs['slug']})
+        context['contact'] = Contact.objects.all()
         context['list_view_url'] = reverse_lazy('events:events_list')
-        context['detail_page_title'] = context['event'].title
+        context['page_title'] = 'Upcoming Events'
+        context['detail_page_title'] = self.object.title
+        context['page_subtitle'] = 'Find the best event for you'
         return context
-
+    
     def form_valid(self, form):
         form.save()
+        messages.success(self.request, 'Your message has been sent successfully.')
         return super().form_valid(form)
-
-    def get_success_url(self):
-        return self.request.path
     
-    def post(self, request, *args, **kwargs):
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Your attendance selection has been recorded successfully.')
-            return super().form_valid(form)
-        else:
-            messages.error(request, 'Sorry, there was an error recording your request. Please try again.')
-            return super().form_invalid(form)
+    def get_success_url(self):
+        return reverse_lazy('landingpages:event_detail', kwargs={'slug': self.kwargs['slug']})
+    
+    def get_initial(self):
+        initial = super().get_initial()
+        initial['event'] = self.kwargs['slug']
+        return initial
