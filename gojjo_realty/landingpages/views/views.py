@@ -3,10 +3,10 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from gojjo_realty.landingpages.forms import ContactForm
 
-from gojjo_realty.landingpages.models import LandingPage, Venue, Contact
+from gojjo_realty.landingpages.models import LandingPage, Venue, Contact, EventFAQ
 from django.utils import timezone
 
-class LandingPageListView(ListView):
+class EventListView(ListView):
     model = LandingPage
     ordering = ['-date']
     template_name = 'events/events_list.html'
@@ -21,7 +21,7 @@ class LandingPageListView(ListView):
         context['page_subtitle'] = 'Find the best event for you'
         return context
 
-class LandingPageDetailView(DetailView, FormView):
+class EventDetailView(DetailView, FormView):
     model = LandingPage
     form_class = ContactForm
     template_name = 'events/event_detail.html'
@@ -32,6 +32,7 @@ class LandingPageDetailView(DetailView, FormView):
         # context['event'] = LandingPage.objects.get(slug=self.kwargs['slug'])
         # context['venue'] = Venue.objects.all()
         context['attending_form'] = ContactForm(initial={'event': self.kwargs['slug']})
+        context['faqs'] = EventFAQ.objects.filter(is_published=True)
         context['contact'] = Contact.objects.all()
         context['list_view_url'] = reverse_lazy('events:events_list')
         context['page_title'] = 'Upcoming Events'

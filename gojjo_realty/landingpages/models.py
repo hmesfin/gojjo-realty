@@ -77,6 +77,7 @@ class LandingPage(TimeStampedModel):
     status = models.CharField(max_length=255, verbose_name=_('Status'), choices=EVENT_STATUS_CHOICES, default='draft')
     online_event = models.BooleanField(default=False, verbose_name=_('Online Event'))
     event_link = models.URLField(verbose_name=_('Event Link'), blank=True, null=True)
+    faqs = models.ManyToManyField('EventFAQ', blank=True, verbose_name=_('FAQs'), related_name='landing_pages')
 
     class Meta:
         verbose_name = _('Event')
@@ -96,4 +97,18 @@ class LandingPage(TimeStampedModel):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)
+
+
+class EventFAQ(TimeStampedModel):
+    landing_page = models.ForeignKey(LandingPage, on_delete=models.CASCADE, verbose_name=_('Event'), related_name='event_faqs')
+    question = models.CharField(max_length=255, verbose_name=_('Question'))
+    answer = models.TextField(verbose_name=_('Answer'))
+    is_published = models.BooleanField(default=True, verbose_name=_('Published'))
+
+    class Meta:
+        verbose_name = _('Event FAQ')
+        verbose_name_plural = _('Event FAQs')
+
+    def __str__(self):
+        return self.question
 

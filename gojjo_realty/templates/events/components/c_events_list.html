@@ -33,7 +33,20 @@
             </div>
             <div class="meta">
                 <span class="color-secondary"> {% trans 'Where' %}: </span>
-                <span class="post-date">{{ event.get_venue_name }}</span>
+                <span class="post-date">
+                  {% if event.online_event %}
+                  <i class="bi bi-globe"></i>
+                    <span><a href="{{ event.event_link }}">{% trans "Online Event Link" %}</a></span>
+                  {% else %}
+                  <i class="bi bi-geo-alt"></i>
+                  <ul class="cats">
+                    <span>{{ event.venue.name }}</span>
+                    <span>{{ event.venue.address }}</span>
+                    <span>{{ event.venue.city }}</span>
+                    <span>{{ event.venue.get_state_display}}</span>
+                  </ul>
+                  {% endif %}
+                </span>
             </div>
             <div class="meta">
                 <span class="color-secondary"> {% trans 'What' %}: </span>

@@ -30,13 +30,13 @@
                 {{ event.content }}
               </p>
 
-            </div><!-- End post content -->
+            </div><!-- End event content -->
 
             <div class="meta-bottom">
               {% if event.online_event %}
               <i class="bi bi-globe"></i>
               <ul class="cats">
-                <li><a href="{{ event.event_link }}">Event Link</a></li>
+                <li><a href="{{ event.event_link }}">{% trans "Online Event Link" %}</a></li>
               </ul>
               {% else %}
               <i class="bi bi-geo-alt"></i>
@@ -49,7 +49,7 @@
               {% endif %}
             </div><!-- End meta bottom -->
 
-          </article><!-- End blog post -->
+          </article><!-- End event post -->
 
           <div class="post-author d-flex align-items-center">
             <img src="{% if event.agent.agent_photo %}{{ event.agent.agent_photo.url }}{% else %}{% static 'images/defaults/default_person.png' %}{% endif %}" class="rounded-circle flex-shrink-0" alt="">
@@ -76,7 +76,7 @@
                 {{ event.agent.agent_short_bio }}
               </p>
             </div>
-          </div><!-- End post author -->
+          </div><!-- End event organizer -->
 
         </div>
 
@@ -94,10 +94,36 @@
                   </div>
                 </div>
               </form>
-            </div><!-- End sidebar search formn-->
+            </div><!-- End sidebar contact formn-->
 
-          </div><!-- End Blog Sidebar -->
-
+            <div class="sidebar-item faq gx-2">
+              <div class="content px-xl-5">
+                <h3>{% trans "Frequently Asked"%} <strong>{% trans "Questions"%}</strong></h3>
+                <p>
+                  {% trans "Answers for some frequently asked questions."%}
+                </p>
+              </div>
+              <div class="accordion accordion-flush px-xl-5" id="faqlist">
+                {% for faq in faqs %}
+                <div class="accordion-item" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="accordion-header">
+                        <!-- Use the loop counter to create a unique data-bs-target -->
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-{{ forloop.counter }}">
+                            <i class="bi bi-question-circle question-icon"></i>
+                            {{ faq.question }}
+                        </button>
+                    </h3>
+                    <!-- Use the loop counter to create a unique id -->
+                    <div id="faq-content-{{ forloop.counter }}" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                        <div class="accordion-body">
+                            {{ faq.answer }}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+              </div>
+          </div><!-- End Event Sidebar -->
+          </div>
         </div>
       </div>
 

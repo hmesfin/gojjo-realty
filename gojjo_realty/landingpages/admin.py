@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Venue, Contact, LandingPage
+from .models import Venue, Contact, LandingPage, EventFAQ
 
 class VenueInline(admin.TabularInline):
     model = Venue
@@ -25,15 +25,28 @@ class ContactInline(admin.TabularInline):
     fields = ('first_name', 'last_name', 'email', 'phone', 'message', 'attending')
     classes = ['collapse']
 
+class EventFAQInline(admin.TabularInline):
+    model = EventFAQ
+    extra = 1
+    min_num = 0
+    max_num = 10
+    verbose_name = 'FAQ'
+    verbose_name_plural = 'FAQs'
+    can_delete = True
+    show_change_link = True
+    fields = ('question', 'answer', 'is_published')
+    classes = ['collapse']
+
+
 @admin.register(LandingPage)
 class LandingPageAdmin(admin.ModelAdmin):
     list_display = ['agent', 'title', 'type', 'status', 'date', 'start_time',]
     search_fields = ['title', 'content']
     list_filter = ['agent', 'type', 'status']
-    inlines = [VenueInline, ContactInline]
+    inlines = [VenueInline, ContactInline, EventFAQInline]
     fieldsets = (
         (None, {
-            'fields': ('agent', 'type', 'title', 'featured_image', 'content', 'status', 'online_event', 'event_link'),
+            'fields': ('agent', 'type', 'title', 'featured_image', 'content', 'online_event', 'event_link', 'status',),
         }),
         ('When', {
             'fields': ('date', 'start_time', 'end_time'),
