@@ -280,3 +280,22 @@ EVENT_ATTENDANCE_CHOICES = (
     ('maybe', _('Maybe')),
     ('other', _('Other')),
 )
+
+PROPERTY_TYPE_CHOICES = (
+    ('single_family', _('Single Family')),
+    ('condo', _('Condo')),
+    ('townhome', _('Townhome')),
+    ('multifamily', _('Multifamily')),
+    ('apartment', _('Apartment')),
+    ('commercial', _('Commercial')),
+    ('land', _('Land')),
+    ('other', _('Other')),
+)
+
+LOAN_TYPE_CHOICES = (
+    ('conventional', _('Conventional')),
+    ('fha', _('FHA')),
+    ('va', _('VA')),
+    ('usda', _('USDA')),
+    ('other', _('Other')),
+)
