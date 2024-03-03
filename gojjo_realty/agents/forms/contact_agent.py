@@ -11,6 +11,7 @@ from crispy_forms.bootstrap import FormActions
 from crispy_forms.layout import Layout, Submit, Row, Column
 from crispy_bootstrap5.bootstrap5 import FloatingField
 from django_recaptcha.fields import ReCaptchaField
+from django_recaptcha.widgets import ReCaptchaV3
 
 class ContactAgentForm(forms.Form):
     agent = forms.SlugField(widget=forms.HiddenInput())
@@ -19,7 +20,7 @@ class ContactAgentForm(forms.Form):
     email = forms.EmailField(label=_("Email"), widget=forms.EmailInput(attrs={'placeholder': _('Email')}))
     phone = forms.CharField(label=_("Phone"), max_length=100, widget=forms.TextInput(attrs={'placeholder': _('Phone')}))
     message = forms.CharField(label=_("Message"), widget=forms.Textarea(attrs={'placeholder': _('Message')}))
-    captcha = ReCaptchaField()
+    captcha = ReCaptchaField(widget=ReCaptchaV3)
 
     def __init__(self, *args, **kwargs):
         self.agent_slug = kwargs.pop('agent', None)
@@ -49,7 +50,7 @@ class ContactAgentForm(forms.Form):
             ),
             'captcha',
             FormActions(
-            Submit('submit', _('Submit'), css_class='btn btn-primary')
+            Submit('btnSubmit', _('Submit'), css_class='btn btn-primary')
             )
         )
 

@@ -15,8 +15,8 @@ CELERY_FLOWER_PASSWORD=o6hrwpRYjqn4SYZsxDmtjPcT0Eg59kbVsxCJfgX8pR2e47LwOhwOjUK7b
 
 # reCAPTCHA
 # ------------------------------------------------------------------------------
-RECAPTCHA_PUBLIC_KEY=some_public_key
-RECAPTCHA_PRIVATE_KEY=some_private_key
+RECAPTCHA_PUBLIC_KEY=6LerXMIZAAAAAKUZmgPvkrRUjOdmqoZq1kCXKRea
+RECAPTCHA_PRIVATE_KEY=6LerXMIZAAAAAIHzbt9pnxhHOnBlE_46lgsM4dSM
 
 # Open AI API
 # ------------------------------------------------------------------------------

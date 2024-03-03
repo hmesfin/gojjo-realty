@@ -1,5 +1,6 @@
 from django import forms
 from django_recaptcha.fields import ReCaptchaField
+from django_recaptcha.widgets import ReCaptchaV3
 from django.conf import settings
 from django.core.mail import send_mail
 from django.urls import reverse_lazy
@@ -17,11 +18,11 @@ from gojjo_realty.agents.models import Agent
 
 
 class ContactMessageForm(forms.ModelForm):
-    # captcha = ReCaptchaField()
+    captcha = ReCaptchaField(widget=ReCaptchaV3)
 
     class Meta:
         model = ContactMessage
-        fields = ['first_name', 'last_name', 'email', 'phone', 'subject', 'message', ]
+        fields = ['first_name', 'last_name', 'email', 'phone', 'subject', 'message', 'captcha']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -52,9 +53,9 @@ class ContactMessageForm(forms.ModelForm):
             ),
             FloatingField('subject', css_class='form-group'),
             FloatingField('message', css_class='form-group'),
-            # 'captcha',
+            'captcha',
             FormActions(
-                Submit('submit', 'Submit', css_class='btn btn-primary')
+                Submit('btnSubmit', 'Submit', css_class='btn btn-primary')
             )
         )
     

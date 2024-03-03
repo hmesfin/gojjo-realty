@@ -226,7 +226,7 @@
     position: fixed;
     visibility: hidden;
     opacity: 0;
-    right: 100px;
+    right: 200px;
     bottom: 15px;
     z-index: 995;
     background: var(--color-primary);
@@ -419,7 +419,11 @@
       border: 1px solid transparent;
       border-radius: 0.25rem;
       color: #0c5460;
-      z-index: 9999;
+      z-index: 10000;
+    }
+
+    [data-bs-theme='dark'] .alert-dismissible {
+      color: #0c5460;
     }
   
     .navbar>ul>li>a:before {
@@ -4248,6 +4252,9 @@
   border-radius: 4px;
   transition: all 0.4s;
   z-index: 995;
+  position: fixed;
+  right: 100px;
+  bottom: 15px;
 }
 
 .bd-mode-toggle .theme-icon {
@@ -4341,4 +4348,12 @@
   padding: 10px;
   transition: 0.3s;
   width: 100%;
+}
+
+/*--------------------------------------------------------------
+# Google reCAPTCHA
+--------------------------------------------------------------*/
+
+.g-recaptcha {
+  z-index: 99999;
 }
