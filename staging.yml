@@ -42,7 +42,7 @@ services:
       - staging_traefik:/etc/traefik/acme
     ports:
       - '0.0.0.0:80:80'
-      - '0.0.0.0:443:443'
+      - '0.0.0.0:442:443'
       - '0.0.0.0:5550:5555'
 
   redis:
