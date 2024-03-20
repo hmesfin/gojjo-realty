@@ -79,7 +79,7 @@ MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/media/"
 # https://docs.djangoproject.com/en/dev/ref/settings/#default-from-email
 DEFAULT_FROM_EMAIL = env(
     "DJANGO_DEFAULT_FROM_EMAIL",
-    default="Gojjo Realty <noreply@teamgojjo.online>",
+    default="Gojjo Realty <noreply@gojjorealty.com>",
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#server-email
 SERVER_EMAIL = env("DJANGO_SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
@@ -172,7 +172,7 @@ sentry_sdk.init(
 # -------------------------------------------------------------------------------
 # Tools that generate code samples can use SERVERS to point to the correct domain
 SPECTACULAR_SETTINGS["SERVERS"] = [  # noqa: F405
-    {"url": "https://teamgojjo.online", "description": "Staging server"},
+    {"url": "https://staging.gojjorealty.com", "description": "Staging server"},
 ]
 # Your stuff...
 # ------------------------------------------------------------------------------
