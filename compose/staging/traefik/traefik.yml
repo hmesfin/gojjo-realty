@@ -4,7 +4,7 @@ log:
 entryPoints:
   web:
     # http
-    address: ':81'
+    address: ':80'
     http:
       # https://doc.traefik.io/traefik/routing/entrypoints/#entrypoint
       redirections:
@@ -13,10 +13,10 @@ entryPoints:
 
   web-secure:
     # https
-    address: ':442'
+    address: ':443'
 
   flower:
-    address: ':5550'
+    address: ':5555'
 
 certificatesResolvers:
   letsencrypt:
@@ -66,7 +66,7 @@ http:
     flower:
       loadBalancer:
         servers:
-          - url: http://flower:5550
+          - url: http://flower:5555
 
 providers:
   # https://doc.traefik.io/traefik/master/providers/file/
