@@ -278,4 +278,4 @@ gojjo_realty/media/
 .ipython/
 .env
 .envs/*
-!.envs/.local/
+!.envs/.examples/

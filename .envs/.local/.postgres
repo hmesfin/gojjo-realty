@@ -1,7 +1,0 @@
-# PostgreSQL
-# ------------------------------------------------------------------------------
-POSTGRES_HOST=postgres
-POSTGRES_PORT=5432
-POSTGRES_DB=gojjo_realty
-POSTGRES_USER=vsTQltVOZkLpxIBpYJInhrlONrbAnXNn
-POSTGRES_PASSWORD=Gn7bJVr9OTwtqJpXnLyXQXqxIOwSU9hbZ5lttKd4qmDSnyC0ORpw8YIj4J6EVgTJ
