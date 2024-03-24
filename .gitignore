@@ -279,3 +279,6 @@ gojjo_realty/media/
 .env
 .envs/*
 !.envs/.examples/
+
+# Misc
+gojjo_realty_data.json
